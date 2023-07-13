@@ -1,0 +1,22 @@
+.terminal-input {
+  display: flex;
+  width: 100%;
+}
+
+input {
+  flex-grow: 1;
+  background: none;
+  box-shadow: none;
+  font-family: "MyFont";
+  color: #33ff00;
+  font-size: 21px;
+  border: none;
+  outline: none;
+  caret-shape: block;
+}
+
+.screen-line {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}

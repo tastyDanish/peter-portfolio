@@ -1,0 +1,59 @@
+.screen {
+  position: relative;
+  background: linear-gradient(
+    rgba(8, 8, 8, 1),
+    rgb(21, 36, 15),
+    rgba(8, 8, 8, 1)
+  );
+  background-size: 100% 200%;
+  animation: gradientAnimation 5s ease-in infinite;
+  height: 400px;
+  color: #33ff00;
+  padding: 20px;
+  border-radius: 50% / 3%;
+  z-index: 2;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 100% 0%;
+  }
+
+  100% {
+    background-position: 200% -200%;
+  }
+}
+
+.screen:after {
+  position: absolute;
+  content: "";
+  top: 3%;
+  bottom: 3%;
+  right: -2%;
+  left: -2%;
+  background: inherit;
+  border-radius: 2% / 50%;
+  z-index: -1;
+}
+
+.screen-content {
+  height: 400px;
+  opacity: 0.8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.screen-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.screen-line {
+  word-wrap: break-word;
+  max-width: 100%;
+}

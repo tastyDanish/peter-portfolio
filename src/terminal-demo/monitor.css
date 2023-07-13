@@ -1,0 +1,129 @@
+.monitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 500px;
+  max-width: 950px;
+}
+
+.border-box {
+  position: relative;
+  width: 90%;
+  background-color: #e3ddc8;
+  padding: 25px 10px 15px;
+  border-radius: 50% / 2%;
+  box-shadow: 0 18px 20px 0px #3b3636;
+  z-index: 0;
+}
+.border-box:after {
+  position: absolute;
+  content: "";
+  top: 2%;
+  bottom: 2%;
+  right: -1%;
+  left: -1%;
+  background: inherit;
+  border-radius: 1% / 50%;
+  z-index: -1;
+}
+
+.monitor-base {
+  background-color: #605c63;
+  padding: 36px;
+  border-radius: 50% / 2%;
+  position: relative;
+  z-index: 1;
+}
+
+.monitor-base:before {
+  position: absolute;
+  content: "";
+  top: 2%;
+  bottom: 2%;
+  right: -0.5%;
+  left: -0.5%;
+  background: inherit;
+  border-radius: 0.5% / 50%;
+  z-index: -1;
+}
+
+.monitor-base:after {
+  position: absolute;
+  content: "";
+  top: 0%;
+  bottom: 95%;
+  right: 0%;
+  left: 0%;
+  background: linear-gradient(
+    180deg,
+    rgba(41, 38, 41, 1),
+    rgba(87, 84, 89, 1) 70%
+  );
+  border-radius: 50% / 30%;
+}
+
+.screen-border {
+  position: relative;
+  width: 75%;
+  background: linear-gradient(
+    180deg,
+    rgba(41, 38, 41, 1) 0%,
+    rgba(70, 69, 71, 1) 12%
+  );
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  border-radius: 50% / 3%;
+  z-index: 2;
+}
+
+.screen-border:before {
+  position: absolute;
+  content: "";
+  top: 3%;
+  bottom: 3%;
+  right: -2%;
+  left: -2%;
+  background: inherit;
+  border-radius: 2% / 50%;
+  z-index: -1;
+}
+.screen-border:after {
+  position: absolute;
+  content: "";
+  top: 94%;
+  bottom: 0%;
+  right: 0%;
+  left: 0%;
+  background: #9c9599;
+  border-radius: 50%;
+}
+
+.tag-border {
+  background: #3b3636;
+  padding: 2px;
+  position: absolute;
+  bottom: 10%;
+  right: 4%;
+}
+.tag {
+  background: #080808;
+  padding-left: 10px;
+  padding-right: 5px;
+  color: white;
+  letter-spacing: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
+@media (max-width: 800px) {
+  .tag-border {
+    display: none;
+  }
+
+  .screen-border {
+    width: 95%;
+  }
+}
