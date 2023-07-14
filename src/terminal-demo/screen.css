@@ -1,9 +1,9 @@
 .screen {
   position: relative;
   background: linear-gradient(
-    rgba(8, 8, 8, 1),
-    rgb(21, 36, 15),
-    rgba(8, 8, 8, 1)
+    rgba(29, 30, 29),
+    rgb(21, 43, 13),
+    rgb(29, 30, 29)
   );
   background-size: 100% 200%;
   animation: gradientAnimation 5s ease-in infinite;

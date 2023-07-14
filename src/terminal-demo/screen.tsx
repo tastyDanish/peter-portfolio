@@ -38,7 +38,7 @@ const Screen = () => {
     i++;
 
     if (i <= 10) {
-      setTimeout(animateLoading, 400); // Delay each iteration by 500 milliseconds
+      setTimeout(animateLoading, 300); // Delay each iteration by 500 milliseconds
     } else {
       setScreenState(screenStates.ready);
     }
@@ -104,18 +104,18 @@ const Screen = () => {
     await animate(
       scope.current,
       {
-        opacity: 1,
+        opacity: 0.7,
         background:
-          "linear-gradient(180deg,rgba(80, 142, 60, 1) 35%,rgba(94, 194, 61, 1) 50%,rgba(80, 142, 60, 1) 65%)",
+          "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 25%, rgba(94,194,61,1) 41%, rgba(172,217,126,1) 51%, rgba(93,190,61,1) 59%, rgba(80,142,60,1) 75%, rgba(8,8,8,1) 95%)",
       },
-      { delay: 0.5, duration: 0.02 }
+      { delay: 1, duration: 0.02 }
     );
     await animate(
       scope.current,
-      { opacity: 0, scale: 0, background: "rgba(8, 8, 8, 1)" },
-      { ease: "easeOut", duration: 0.1 }
+      { opacity: 0 },
+      { ease: "easeOut", duration: 0.01 }
     );
-    await animate(scope.current, { opacity: 0 }, { duration: 0.5 });
+    await animate(scope.current, { opacity: 0 }, { duration: 0.3 });
   }
 
   return (
