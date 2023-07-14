@@ -6,12 +6,14 @@ const Monitor = () => {
   return (
     <div className="monitor">
       <div className="border-box">
-        <div className="monitor-base">
-          <div className="screen-border">
-            <Screen />
-          </div>
-          <div className="tag-border">
-            <div className="tag">UNICOMP</div>
+        <div className="monitor-details">
+          <div className="monitor-base">
+            <div className="screen-border">
+              <Screen />
+            </div>
+            <div className="tag-border">
+              <div className="tag">UNICOMP</div>
+            </div>
           </div>
         </div>
       </div>
