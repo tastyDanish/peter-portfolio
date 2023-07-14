@@ -2,6 +2,7 @@ import React, { RefObject, useEffect } from "react";
 import "./terminalInput.css";
 
 interface TerminalInputProps {
+  ready: boolean;
   onEnter(text: string): void;
   childRef: RefObject<HTMLInputElement>;
 }
@@ -21,7 +22,9 @@ const TerminalInput = (props: TerminalInputProps) => {
   };
 
   return (
-    <div className="terminal-input">
+    <div
+      className="terminal-input"
+      style={{ opacity: props.ready ? "1" : "0" }}>
       <div>{"C:>"}</div>
       <input
         ref={props.childRef}

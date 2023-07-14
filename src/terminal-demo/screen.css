@@ -9,7 +9,6 @@
   animation: gradientAnimation 5s ease-in infinite;
   height: 400px;
   color: #33ff00;
-  padding: 20px;
   border-radius: 50% / 3%;
   z-index: 2;
 }
@@ -33,11 +32,31 @@
   left: -2%;
   background: inherit;
   border-radius: 2% / 50%;
+  z-index: -2;
+}
+
+.screen-flash {
+  background: black;
+  height: 100%;
+  width: 100%;
+  border-radius: 50% / 3%;
+  z-index: 4;
+}
+.screen-flash:after {
+  position: absolute;
+  content: "";
+  top: 3%;
+  bottom: 3%;
+  right: -2%;
+  left: -2%;
+  background: inherit;
+  border-radius: 2% / 50%;
   z-index: -1;
 }
 
 .screen-content {
   height: 400px;
+  padding: 20px;
   opacity: 0.8;
   display: flex;
   justify-content: flex-start;
@@ -54,6 +73,16 @@
 }
 
 .screen-line {
-  word-wrap: break-word;
   max-width: 100%;
+  overflow: hidden;
+  animation: appearCharByChar 250ms steps(30) forwards;
+}
+
+@keyframes appearCharByChar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
