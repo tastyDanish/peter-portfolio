@@ -6,12 +6,17 @@ export default (memCounter: number, counter: number) => {
     "CPU: INVOTECH XL4-MMX",
     " ",
     "Version J82151Q",
-    " ",
-    `Memory Test : ${
-      memCounter > memMax ? String(memMax) + " OK" : memCounter
-    }`,
-    " ",
   ];
+
+  if (counter > 1) {
+    loadingArray.push(
+      " ",
+      `Memory Test : ${
+        memCounter > memMax ? String(memMax) + " OK" : memCounter
+      }`,
+      " "
+    );
+  }
 
   if (counter > 2) {
     loadingArray.push("Verifying DMI Hardware Pool...");
