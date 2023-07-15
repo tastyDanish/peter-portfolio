@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./screen.css";
 import TerminalInput from "./terminalInput";
 import { motion, useAnimate } from "framer-motion";
+import loadingText from "./loadingText";
 
 enum screenStates {
   flash,
@@ -17,40 +18,29 @@ const Screen = () => {
   const [showLogo, setShowLogo] = useState(false);
   const [scope, animate] = useAnimate();
   const containerRef = useRef<HTMLDivElement>(null);
+  const heightRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
   let enterOffset = 1;
 
   let i = 0;
+  let memCounter = 0;
 
   function animateLoading() {
     setShowLogo(true);
-    let loadingArray = [
-      "Version J82151Q",
-      " ",
-      "INVOTECH XL4-MMX CPU at 200MHz",
-      "Memory Test : 123451 OK",
-      " ",
-    ];
 
-    const flipperState = i % 4;
-    if (flipperState === 0) {
-      setText([...loadingArray, "loading... \\"]);
-    } else if (flipperState === 1) {
-      setText([...loadingArray, "loading... |"]);
-    } else if (flipperState === 2) {
-      setText([...loadingArray, "loading... /"]);
-    } else {
-      setText([...loadingArray, "loading... |"]);
-    }
-
+    memCounter += Math.floor(Math.random() * 45000);
     i++;
 
-    if (i <= 10) {
-      setTimeout(animateLoading, 300); // Delay each iteration by 500 milliseconds
+    setText(loadingText(memCounter, i));
+
+    if (i <= 20) {
+      setTimeout(animateLoading, 400); // Delay each iteration by 500 milliseconds
     } else {
       setText([]);
       setShowLogo(false);
       setScreenState(screenStates.ready);
+      i = 0;
+      memCounter = 0;
     }
   }
 
@@ -67,12 +57,19 @@ const Screen = () => {
   }, [screenState]);
 
   useEffect(() => {
-    const container = containerRef.current;
+    const container = heightRef.current;
+    if (container) {
+      console.log("scroll height: ", container.scrollHeight);
+      console.log("client height", container.clientHeight);
+    }
     if (container && container.scrollHeight > container.clientHeight) {
+      console.log("its bigger!");
       setText(text.slice(enterOffset));
+    } else {
+      console.log(" its not bigger");
     }
     enterOffset = 1;
-  }, [text]);
+  });
 
   const onEnter = (inputText: string) => {
     if (inputText.toLowerCase().trimEnd() == "clear") {
@@ -138,10 +135,10 @@ const Screen = () => {
           ref={scope}
         />
       ) : (
-        <div className="screen-content">
-          {screenState == screenStates.loading ? (
-            <div className="screen-logo" />
-          ) : null}
+        <div
+          className="screen-content"
+          ref={heightRef}>
+          {showLogo ? <div className="screen-logo" /> : null}
           <div
             className="screen-text"
             ref={containerRef}>

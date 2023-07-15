@@ -55,14 +55,14 @@
 }
 
 .screen-content {
-  height: 400px;
-  padding: 20px;
+  height: calc(100% - 60px);
+  padding: 20px 20px 20px;
+  margin-bottom: 20px;
   opacity: 0.6;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  position: relative;
 }
 
 .screen-logo {
@@ -76,11 +76,15 @@
   opacity: 0.8;
 }
 
+.screen-logo::after {
+  position: absolute;
+  bottom: -10%;
+  right: 5%;
+  content: "VENOGRAPH TECHNOLOGIES";
+  color: #33ff00;
+}
+
 .screen-text {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
   width: 100%;
 }
 
@@ -89,8 +93,8 @@
   max-width: 100%;
   overflow: hidden;
   white-space: pre;
-  line-height: 85%;
-  animation: appearCharByChar 250ms steps(30) forwards;
+  flex-shrink: 0;
+  animation: appearCharByChar 300ms steps(30) forwards;
 }
 
 @keyframes appearCharByChar {
