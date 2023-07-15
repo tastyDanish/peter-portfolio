@@ -57,11 +57,23 @@
 .screen-content {
   height: 400px;
   padding: 20px;
-  opacity: 0.8;
+  opacity: 0.6;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  position: relative;
+}
+
+.screen-logo {
+  position: absolute;
+  height: 180px;
+  width: 200px;
+  right: 15px;
+  top: 10px;
+  background: url(unicomp_logo.svg);
+  background-size: contain;
+  opacity: 0.8;
 }
 
 .screen-text {
@@ -73,8 +85,11 @@
 }
 
 .screen-line {
+  text-align: left;
   max-width: 100%;
   overflow: hidden;
+  white-space: pre;
+  line-height: 85%;
   animation: appearCharByChar 250ms steps(30) forwards;
 }
 

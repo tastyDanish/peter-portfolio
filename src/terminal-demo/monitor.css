@@ -10,6 +10,7 @@
 .border-box {
   position: relative;
   width: 90%;
+  min-width: 760px;
   background-color: #e3ddc8;
   padding: 30px 20px 30px;
   border-radius: 50% / 2%;
@@ -141,14 +142,4 @@
   letter-spacing: 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
-}
-
-@media (max-width: 800px) {
-  .tag-border {
-    display: none;
-  }
-
-  .screen-border {
-    width: 95%;
-  }
 }

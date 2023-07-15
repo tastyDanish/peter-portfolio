@@ -9,13 +9,12 @@ enum screenStates {
   ready,
 }
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 const Screen = () => {
   const [text, setText] = useState<string[]>([]);
   const [screenState, setScreenState] = useState<screenStates>(
     screenStates.flash
   );
+  const [showLogo, setShowLogo] = useState(false);
   const [scope, animate] = useAnimate();
   const containerRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
@@ -24,15 +23,24 @@ const Screen = () => {
   let i = 0;
 
   function animateLoading() {
+    setShowLogo(true);
+    let loadingArray = [
+      "Version J82151Q",
+      " ",
+      "INVOTECH XL4-MMX CPU at 200MHz",
+      "Memory Test : 123451 OK",
+      " ",
+    ];
+
     const flipperState = i % 4;
     if (flipperState === 0) {
-      setText(["loading... \\"]);
+      setText([...loadingArray, "loading... \\"]);
     } else if (flipperState === 1) {
-      setText(["loading... |"]);
+      setText([...loadingArray, "loading... |"]);
     } else if (flipperState === 2) {
-      setText(["loading... /"]);
+      setText([...loadingArray, "loading... /"]);
     } else {
-      setText(["loading... |"]);
+      setText([...loadingArray, "loading... |"]);
     }
 
     i++;
@@ -40,6 +48,8 @@ const Screen = () => {
     if (i <= 10) {
       setTimeout(animateLoading, 300); // Delay each iteration by 500 milliseconds
     } else {
+      setText([]);
+      setShowLogo(false);
       setScreenState(screenStates.ready);
     }
   }
@@ -108,14 +118,14 @@ const Screen = () => {
         background:
           "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 25%, rgba(94,194,61,1) 41%, rgba(172,217,126,1) 51%, rgba(93,190,61,1) 59%, rgba(80,142,60,1) 75%, rgba(8,8,8,1) 95%)",
       },
-      { delay: 1, duration: 0.02 }
+      { delay: 0.7, duration: 0.02 }
     );
     await animate(
       scope.current,
       { opacity: 0 },
       { ease: "easeOut", duration: 0.01 }
     );
-    await animate(scope.current, { opacity: 0 }, { duration: 0.3 });
+    await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
   }
 
   return (
@@ -129,6 +139,9 @@ const Screen = () => {
         />
       ) : (
         <div className="screen-content">
+          {screenState == screenStates.loading ? (
+            <div className="screen-logo" />
+          ) : null}
           <div
             className="screen-text"
             ref={containerRef}>

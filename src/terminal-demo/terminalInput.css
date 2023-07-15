@@ -14,9 +14,3 @@ input {
   outline: none;
   caret-shape: block;
 }
-
-.screen-line {
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-}
