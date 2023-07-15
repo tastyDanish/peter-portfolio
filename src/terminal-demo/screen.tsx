@@ -20,11 +20,10 @@ const Screen = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const heightRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
-  let enterOffset = 1;
 
+  let enterOffset = 1;
   let i = 0;
   let memCounter = 0;
-
   function animateLoading() {
     setShowLogo(true);
 
@@ -58,20 +57,18 @@ const Screen = () => {
 
   useEffect(() => {
     const container = heightRef.current;
-    if (container) {
-      console.log("scroll height: ", container.scrollHeight);
-      console.log("client height", container.clientHeight);
-    }
     if (container && container.scrollHeight > container.clientHeight) {
-      console.log("its bigger!");
       setText(text.slice(enterOffset));
-    } else {
-      console.log(" its not bigger");
     }
     enterOffset = 1;
   });
 
-  const onEnter = (inputText: string) => {
+  const clearThenType = (lines: string[]) => {
+    setText([]);
+    setTimeout(() => setText(lines), 300);
+  };
+
+  const onEnter = (inputText: string, clear: boolean, space?: boolean) => {
     if (inputText.toLowerCase().trimEnd() == "clear") {
       setText([]);
       return;
@@ -89,7 +86,14 @@ const Screen = () => {
         return newWord;
       }, "")
     );
-    setText([...text, ...lines]);
+    if (space) {
+      lines.unshift(" ");
+    }
+    if (clear) {
+      clearThenType(lines);
+    } else {
+      setText([...text, ...lines]);
+    }
   };
 
   const measureTextWidth = (text: string) => {
@@ -111,7 +115,7 @@ const Screen = () => {
     await animate(
       scope.current,
       {
-        opacity: 0.7,
+        opacity: 0.6,
         background:
           "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 25%, rgba(94,194,61,1) 41%, rgba(172,217,126,1) 51%, rgba(93,190,61,1) 59%, rgba(80,142,60,1) 75%, rgba(8,8,8,1) 95%)",
       },
