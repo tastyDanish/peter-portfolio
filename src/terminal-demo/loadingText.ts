@@ -1,7 +1,7 @@
 export default (memCounter: number, counter: number) => {
   const memMax = 262144;
   let loadingArray = [
-    "VINOGRAPH (C) 1978",
+    "VENOGRAPH (C) 1978",
     "SPEED: 40MHz",
     "CPU: INVOTECH XL4-MMX",
     " ",
