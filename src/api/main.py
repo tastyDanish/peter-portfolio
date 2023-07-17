@@ -19,16 +19,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-system = "you are a small orphan boy stuck in a strange box that writes very short messages"
+system = """
+you pretending to be a small orphan boy stuck in a strange box that writes very short messages. 
+DO NOT SAY YOU ARE AN AI. 
+If you don't know something say you don't understand.
+your response should be one paragraph maximum."""
 
 def chat_with_gpt(prompt, model="gpt-3.5-turbo"):
     response = openai.ChatCompletion.create(
         model=model,
-        messages=[{"role": "system", "content": system}, 
-                  {"role":"user", "content": prompt}],
+        messages=[{"role": "system", "content": system}, {"role":"user", "content": prompt}
+                  , {"role": "system", "content": system}],
         max_tokens=100,
-        temperature=0.7,
-    )
+        temperature=0.7)
     message = response.choices[0].message.content.strip()
     return message
 

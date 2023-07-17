@@ -3,6 +3,7 @@ import "./screen.css";
 import TerminalInput from "./terminalInput";
 import { motion, useAnimate } from "framer-motion";
 import loadingText from "./loadingText";
+import { splitStringAtIndex } from "../utils/string-utils";
 
 enum screenStates {
   flash,
@@ -20,6 +21,7 @@ const Screen = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const heightRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
+  const [animateIndexes, setAnimateIndexes] = useState<number[]>([]);
 
   let enterOffset = 1;
   let i = 0;
@@ -75,11 +77,27 @@ const Screen = () => {
     }
     const containerWidth = containerRef.current?.offsetWidth ?? 0;
     let lines: string[] = [];
+    let lastSpaceIndex = -1;
+    let counter = 0;
     lines.push(
       inputText.split("").reduce((acc, curr) => {
+        if (curr == " ") {
+          lastSpaceIndex = counter;
+        }
+        counter++;
         const newWord = acc + curr;
         if (measureTextWidth(newWord) > containerWidth) {
           enterOffset++;
+          if (lastSpaceIndex != -1) {
+            const splitAtLastSpace = splitStringAtIndex(
+              newWord,
+              lastSpaceIndex
+            );
+            lines.push(splitAtLastSpace[0]);
+            lastSpaceIndex = -1;
+            counter = splitAtLastSpace[1].length;
+            return splitAtLastSpace[1];
+          }
           lines.push(acc);
           return curr;
         }
