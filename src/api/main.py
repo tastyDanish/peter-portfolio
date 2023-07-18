@@ -40,11 +40,11 @@ Senior Software Developer at Advocat AI from October 2021 to March 2023
 - Refactored a C# .NET gRPC API to leverage multithreading and an Azure Cosmos DB and reduce query times by 90%.
 - Created a culture of code excellence on Azure DevOps with a collaborative code review process to ensure code quality.
 
-Software Developer at Amazon via Amplify Consulting Partners from August 2019 to October 2021
+Software Developer at Amazon via Amplify Consulting Partners from March 2021 to October 2021
  - Helped establish a new analytics team by designing and implementing a server-less data pipeline using Python, AWS Lambda, S3, and SQS to load and transform data into a Redshift cluster.
  - Mentored team on the development lifecycle, AWS, version control, and coding best practices. 
 
-Software Developer at the Colorado Community College System via Amplify Consulting Partners from August 2019 to October 2021
+Software Developer at the Colorado Community College System via Amplify Consulting Partners from August 2019 to March 2021
  - Spearheaded the development of a C# ASP.NET Core REST API using an Azure hosted Microsoft SQL Server for a new student information system. 
  - Collaborated in debugging and enhancing a TypeScript-based React.js app, improving functionality and user experience.
 
