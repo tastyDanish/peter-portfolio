@@ -40,7 +40,7 @@ export default (memCounter: number, counter: number) => {
       }`
     );
   if (counter > 14) {
-    loadingArray.push(" ", " ", " ");
+    loadingArray.push(" ", " ");
     const flipperState = counter % 4;
     if (flipperState === 0) {
       loadingArray.push("loading... \\");

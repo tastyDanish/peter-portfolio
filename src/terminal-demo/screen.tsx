@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./screen.css";
 import TerminalInput from "./terminalInput";
 import { motion, useAnimate } from "framer-motion";
@@ -19,9 +19,7 @@ const Screen = () => {
   const [showLogo, setShowLogo] = useState(false);
   const [scope, animate] = useAnimate();
   const containerRef = useRef<HTMLDivElement>(null);
-  const heightRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
-  const [animateIndexes, setAnimateIndexes] = useState<number[]>([]);
 
   let enterOffset = 1;
   let i = 0;
@@ -35,7 +33,7 @@ const Screen = () => {
     setText(loadingText(memCounter, i));
 
     if (i <= 20) {
-      setTimeout(animateLoading, 400); // Delay each iteration by 500 milliseconds
+      setTimeout(animateLoading, 100); // Delay each iteration by 500 milliseconds
     } else {
       setText([]);
       setShowLogo(false);
@@ -58,61 +56,72 @@ const Screen = () => {
   }, [screenState]);
 
   useEffect(() => {
-    const container = heightRef.current;
-    if (container && container.scrollHeight > container.clientHeight) {
-      setText(text.slice(enterOffset));
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-    enterOffset = 1;
-  });
+  }, [text]);
 
   const clearThenType = (lines: string[]) => {
     setText([]);
     setTimeout(() => setText(lines), 300);
   };
 
-  const onEnter = (inputText: string, clear: boolean, space?: boolean) => {
-    if (inputText.toLowerCase().trimEnd() == "clear") {
-      setText([]);
-      return;
-    }
-    const containerWidth = containerRef.current?.offsetWidth ?? 0;
-    let lines: string[] = [];
-    let lastSpaceIndex = -1;
-    let counter = 0;
-    lines.push(
-      inputText.split("").reduce((acc, curr) => {
-        if (curr == " ") {
-          lastSpaceIndex = counter;
-        }
-        counter++;
-        const newWord = acc + curr;
-        if (measureTextWidth(newWord) > containerWidth) {
-          enterOffset++;
-          if (lastSpaceIndex != -1) {
-            const splitAtLastSpace = splitStringAtIndex(
-              newWord,
-              lastSpaceIndex
-            );
-            lines.push(splitAtLastSpace[0]);
+  const onEnter = useCallback(
+    (inputText: string, clear: boolean, space?: boolean) => {
+      if (inputText.toLowerCase().trimEnd() == "clear") {
+        setText([]);
+        return;
+      }
+      const containerWidth = containerRef.current?.offsetWidth ?? 0;
+      let lines: string[] = [];
+      let lastSpaceIndex = -1;
+      let counter = 0;
+      lines.push(
+        inputText.split("").reduce((acc, curr) => {
+          if (curr === "\n") {
+            if (acc.trim() == "") {
+              lines.push(" ");
+            } else {
+              lines.push(acc);
+            }
+            counter = 4;
             lastSpaceIndex = -1;
-            counter = splitAtLastSpace[1].length;
-            return splitAtLastSpace[1];
+            return "    ";
           }
-          lines.push(acc);
-          return curr;
-        }
-        return newWord;
-      }, "")
-    );
-    if (space) {
-      lines.unshift(" ");
-    }
-    if (clear) {
-      clearThenType(lines);
-    } else {
-      setText([...text, ...lines]);
-    }
-  };
+          if (curr === " ") {
+            lastSpaceIndex = counter;
+          }
+          counter++;
+          const newWord = acc + curr;
+          if (measureTextWidth(newWord) > containerWidth - 30) {
+            enterOffset++;
+            if (lastSpaceIndex != -1) {
+              const splitAtLastSpace = splitStringAtIndex(
+                newWord,
+                lastSpaceIndex + 1
+              );
+              lines.push(splitAtLastSpace[0]);
+              lastSpaceIndex = -1;
+              counter = splitAtLastSpace[1].length;
+              return splitAtLastSpace[1];
+            }
+            lines.push(acc);
+            return curr;
+          }
+          return newWord;
+        }, "")
+      );
+      if (space) {
+        lines.unshift(" ");
+      }
+      if (clear) {
+        clearThenType(lines);
+      } else {
+        setText([...text, ...lines]);
+      }
+    },
+    [containerRef, setText, text, clearThenType]
+  );
 
   const measureTextWidth = (text: string) => {
     const canvas = document.createElement("canvas");
@@ -157,9 +166,7 @@ const Screen = () => {
           ref={scope}
         />
       ) : (
-        <div
-          className="screen-content"
-          ref={heightRef}>
+        <div className="screen-content">
           {showLogo ? <div className="screen-logo" /> : null}
           <div
             className="screen-text"

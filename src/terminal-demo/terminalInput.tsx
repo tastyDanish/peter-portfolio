@@ -12,10 +12,16 @@ const TerminalInput = (props: TerminalInputProps) => {
   const [inputValue, setInputValue] = React.useState("");
   const [chatEnabled, setChatEnabled] = React.useState(false);
   const [loading, setloading] = React.useState(false);
+  const [response, setResponse] = React.useState("");
 
   useEffect(() => {
     if (props.childRef.current) props.childRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    props.onEnter(`ZYLEX: ${response}`, false, true);
+    setloading(false);
+  }, [response]);
 
   useEffect(() => {
     if (!loading && props.childRef.current) props.childRef.current.focus();
@@ -46,13 +52,15 @@ const TerminalInput = (props: TerminalInputProps) => {
     }
   };
 
-  const handleChat = async () => {
+  const handleChat = () => {
+    props.onEnter(`USER: ${inputValue}`, false);
     try {
-      const response = await chat(inputValue);
-      props.onEnter(response, false, true);
-      setloading(false);
+      chat(inputValue).then((response) => {
+        setResponse(response);
+      });
     } catch (error) {
       // Handle error
+      setResponse("ERROR");
       console.error(error);
     }
   };
@@ -61,16 +69,18 @@ const TerminalInput = (props: TerminalInputProps) => {
     <div
       className="terminal-input"
       style={{ opacity: props.ready ? "1" : "0" }}>
-      <div>{`C:${chatEnabled ? "CHAT" : ""}>`}</div>
       {loading ? (
-        <div>{"LOADING..."}</div>
+        <div>{"ZYLEX IS WRITING..."}</div>
       ) : (
-        <input
-          ref={props.childRef}
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyPress}></input>
+        <>
+          <div>{`C:${chatEnabled ? "CHAT" : ""}>`}</div>
+          <input
+            ref={props.childRef}
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyPress}></input>
+        </>
       )}
     </div>
   );

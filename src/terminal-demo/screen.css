@@ -63,6 +63,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  width: 100%;
 }
 
 .screen-logo {
@@ -85,7 +86,28 @@
 }
 
 .screen-text {
-  width: 100%;
+  width: 95%;
+  overflow: auto;
+}
+
+.screen-text::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+  left: 20px;
+}
+
+.screen-text::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.screen-text::-webkit-scrollbar-thumb {
+  background: #47d423;
+}
+
+/* Handle on hover */
+.screen-text::-webkit-scrollbar-thumb:hover {
+  background: #33ff00;
 }
 
 .screen-line {
