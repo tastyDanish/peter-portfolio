@@ -13,6 +13,7 @@ enum screenStates {
 
 const Screen = () => {
   const [text, setText] = useState<string[]>([]);
+  const [textQueue, setTextQueue] = useState<string[]>([]);
   const [screenState, setScreenState] = useState<screenStates>(
     screenStates.flash
   );
@@ -60,6 +61,13 @@ const Screen = () => {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [text]);
+
+  useEffect(() => {
+    if (textQueue.length > 0) {
+      setText([...text, textQueue[0]]);
+      setTimeout(() => setTextQueue(textQueue.slice(1)), 300);
+    }
+  }, [textQueue]);
 
   const clearThenType = (lines: string[]) => {
     setText([]);
@@ -117,10 +125,10 @@ const Screen = () => {
       if (clear) {
         clearThenType(lines);
       } else {
-        setText([...text, ...lines]);
+        setTextQueue(lines);
       }
     },
-    [containerRef, setText, text, clearThenType]
+    [containerRef, setTextQueue, clearThenType]
   );
 
   const measureTextWidth = (text: string) => {

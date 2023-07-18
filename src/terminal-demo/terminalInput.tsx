@@ -19,7 +19,8 @@ const TerminalInput = (props: TerminalInputProps) => {
   }, []);
 
   useEffect(() => {
-    props.onEnter(`ZYLEX: ${response}`, false, true);
+    if (response && chatEnabled)
+      props.onEnter(`ZYLEX: ${response}`, false, true);
     setloading(false);
   }, [response]);
 
@@ -53,7 +54,7 @@ const TerminalInput = (props: TerminalInputProps) => {
   };
 
   const handleChat = () => {
-    props.onEnter(`USER: ${inputValue}`, false);
+    props.onEnter(`USER: ${inputValue}`, false, true);
     try {
       chat(inputValue).then((response) => {
         setResponse(response);
@@ -70,7 +71,7 @@ const TerminalInput = (props: TerminalInputProps) => {
       className="terminal-input"
       style={{ opacity: props.ready ? "1" : "0" }}>
       {loading ? (
-        <div>{"ZYLEX IS WRITING..."}</div>
+        <div className="zylex-typing">{"ZYLEX IS WRITING..."}</div>
       ) : (
         <>
           <div>{`C:${chatEnabled ? "CHAT" : ""}>`}</div>

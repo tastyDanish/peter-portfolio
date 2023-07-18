@@ -5,6 +5,21 @@
   padding: 4px;
 }
 
+.zylex-typing {
+  opacity: 0;
+  animation: fadeIn 300ms ease-in-out forwards;
+  animation-delay: 300ms;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 input {
   flex-grow: 1;
   background: none;
