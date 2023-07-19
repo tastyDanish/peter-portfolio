@@ -5,8 +5,7 @@ interface PowerProps {
   isOn: boolean;
   handlePower(power: boolean): void;
 }
-
-export default (props: PowerProps) => {
+const Power = (props: PowerProps) => {
   const [isChecked, setIsChecked] = useState(props.isOn);
 
   const handleChange = () => {
@@ -29,3 +28,5 @@ export default (props: PowerProps) => {
     </div>
   );
 };
+
+export default Power;

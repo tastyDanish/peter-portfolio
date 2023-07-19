@@ -1,6 +1,3 @@
-import React from "react";
-import logo from "./logo.svg";
-import Player from "./player";
 import Monitor from "./terminal-demo/monitor";
 import "./App.css";
 

@@ -1,7 +1,8 @@
 :root {
-  --dark: #212022;
+  --dark: #39383c;
+  --slightly-dark: #3e3c43;
   --switch: rgb(109, 101, 99);
-  --switch-accent: rgb(47, 43, 42);
+  --switch-accent: rgb(79, 69, 67);
   --switch-on: hsl(107, 40%, 50%);
   --text-on: #fff;
   --text-off: #ddd;
@@ -9,8 +10,8 @@
 
 .power {
   position: absolute;
-  top: 8%;
-  right: 2%;
+  top: 6%;
+  right: 4%;
 }
 
 .rocker {
@@ -25,6 +26,7 @@
   height: 4rem;
   overflow: hidden;
   border-bottom: 0.25rem solid var(--dark);
+  border-radius: 3px;
 }
 
 .rocker-small {
@@ -35,13 +37,14 @@
 .rocker::before {
   content: "";
   position: absolute;
-  top: 0.5em;
+  top: 1em;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--switch-accent);
+  background-color: var(--slightly-dark);
   border: 0.25rem solid var(--dark);
   border-bottom: 0;
+  border-radius: 3px 3px 0 0;
 }
 
 .rocker input {
@@ -65,8 +68,8 @@
 .switch-left {
   height: 3rem;
   width: 3rem;
-  left: 0.8rem;
-  bottom: 0.3rem;
+  left: 0.9rem;
+  bottom: 0.4rem;
   border-radius: 5px 0px 0px 5px;
   background-color: var(--switch);
   transform: rotate(15deg) skewX(15deg);
@@ -74,9 +77,9 @@
 
 .switch-right {
   border-radius: 0px 5px 5px 0px;
-  right: 0.25rem;
+  right: 0.3rem;
   bottom: 0;
-  background-color: var(--switch-accent);
+  background-color: var(--switch);
   background-image: radial-gradient(
     at right,
     var(--switch-on) 0%,
@@ -113,7 +116,7 @@ input:checked + .switch-left {
   background-color: var(--switch);
   color: #fff;
   bottom: 0px;
-  left: 0.25em;
+  left: 0.3em;
   height: 3rem;
   width: 3rem;
   transform: rotate(0deg) skewX(0deg);
@@ -127,8 +130,8 @@ input:checked + .switch-left::before {
 input:checked + .switch-left + .switch-right {
   background-color: var(--switch);
   color: #fff;
-  bottom: 0.25rem;
-  right: 0.85rem;
+  bottom: 0.3rem;
+  right: 1rem;
   height: 3rem;
   width: 3rem;
   transform: rotate(-15deg) skewX(-15deg);

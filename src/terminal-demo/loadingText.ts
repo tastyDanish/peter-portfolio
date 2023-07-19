@@ -1,4 +1,4 @@
-export default (memCounter: number, counter: number) => {
+const loadingText = (memCounter: number, counter: number) => {
   const memMax = 262144;
   let loadingArray = [
     "VENOGRAPH (C) 1978",
@@ -10,7 +10,6 @@ export default (memCounter: number, counter: number) => {
 
   if (counter > 1) {
     loadingArray.push(
-      " ",
       `Memory Test : ${
         memCounter > memMax ? String(memMax) + " OK" : memCounter
       }`,
@@ -40,7 +39,7 @@ export default (memCounter: number, counter: number) => {
       }`
     );
   if (counter > 14) {
-    loadingArray.push(" ", " ");
+    loadingArray.push(" ");
     const flipperState = counter % 4;
     if (flipperState === 0) {
       loadingArray.push("loading... \\");
@@ -55,3 +54,5 @@ export default (memCounter: number, counter: number) => {
 
   return loadingArray;
 };
+
+export default loadingText;

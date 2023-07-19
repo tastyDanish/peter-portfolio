@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import "./monitor.css";
 import Screen from "./screen";
 import Power from "./power";

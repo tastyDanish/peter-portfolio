@@ -27,18 +27,17 @@ const Screen = (props: ScreenProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const memCounter = useRef(0);
 
-  let enterOffset = 1;
   let i = 0;
-  let memCounter = 0;
 
   const animateLoading = useCallback(() => {
     setShowLogo(true);
 
-    memCounter += Math.floor(Math.random() * 45000);
+    memCounter.current += Math.floor(Math.random() * 45000);
     i++;
 
-    setText(loadingText(memCounter, i));
+    setText(loadingText(memCounter.current, i));
 
     if (i <= 20) {
       animationTimeoutRef.current = setTimeout(animateLoading, 200); // Delay each iteration by 500 milliseconds
@@ -47,7 +46,7 @@ const Screen = (props: ScreenProps) => {
       setShowLogo(false);
       setScreenState(screenStates.ready);
       i = 0;
-      memCounter = 0;
+      memCounter.current = 0;
     }
   }, [i, memCounter, props.isOn, screenState]);
 
@@ -64,13 +63,13 @@ const Screen = (props: ScreenProps) => {
   }, [props.isOn]);
 
   useEffect(() => {
-    if (screenState == screenStates.flash) {
+    if (screenState === screenStates.flash) {
       flashAnimation().then((_) => setScreenState(screenStates.loading));
     }
-    if (screenState == screenStates.loading) {
+    if (screenState === screenStates.loading) {
       animateLoading();
     }
-    if (screenState == screenStates.ready) {
+    if (screenState === screenStates.ready) {
       setText(["Peter Lansdaal", "Hi, I'm a software dev"]);
     }
   }, [screenState]);
@@ -106,7 +105,7 @@ const Screen = (props: ScreenProps) => {
       lines.push(
         inputText.split("").reduce((acc, curr) => {
           if (curr === "\n") {
-            if (acc.trim() == "") {
+            if (acc.trim() === "") {
               lines.push(" ");
             } else {
               lines.push(acc);
@@ -121,7 +120,6 @@ const Screen = (props: ScreenProps) => {
           counter++;
           const newWord = acc + curr;
           if (measureTextWidth(newWord) > containerWidth - 30) {
-            enterOffset++;
             if (lastSpaceIndex != -1) {
               const splitAtLastSpace = splitStringAtIndex(
                 newWord,
