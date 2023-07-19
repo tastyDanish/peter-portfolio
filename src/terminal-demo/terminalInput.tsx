@@ -1,6 +1,7 @@
 import React, { RefObject, useEffect } from "react";
 import { chat } from "../api/api";
 import "./terminalInput.css";
+import ZylexWriting from "./zylexWriting";
 
 interface TerminalInputProps {
   ready: boolean;
@@ -71,7 +72,7 @@ const TerminalInput = (props: TerminalInputProps) => {
       className="terminal-input"
       style={{ opacity: props.ready ? "1" : "0" }}>
       {loading ? (
-        <div className="zylex-typing">{"ZYLEX IS WRITING..."}</div>
+        <ZylexWriting />
       ) : (
         <>
           <div>{`C:${chatEnabled ? "CHAT" : ""}>`}</div>
