@@ -6,26 +6,33 @@ import loadingText from "./loadingText";
 import { splitStringAtIndex } from "../utils/string-utils";
 
 enum screenStates {
+  off,
   flash,
   loading,
   ready,
 }
 
-const Screen = () => {
+interface ScreenProps {
+  isOn: boolean;
+}
+
+const Screen = (props: ScreenProps) => {
   const [text, setText] = useState<string[]>([]);
   const [textQueue, setTextQueue] = useState<string[]>([]);
   const [screenState, setScreenState] = useState<screenStates>(
-    screenStates.flash
+    screenStates.off
   );
   const [showLogo, setShowLogo] = useState(false);
   const [scope, animate] = useAnimate();
   const containerRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   let enterOffset = 1;
   let i = 0;
   let memCounter = 0;
-  function animateLoading() {
+
+  const animateLoading = useCallback(() => {
     setShowLogo(true);
 
     memCounter += Math.floor(Math.random() * 45000);
@@ -34,7 +41,7 @@ const Screen = () => {
     setText(loadingText(memCounter, i));
 
     if (i <= 20) {
-      setTimeout(animateLoading, 100); // Delay each iteration by 500 milliseconds
+      animationTimeoutRef.current = setTimeout(animateLoading, 200); // Delay each iteration by 500 milliseconds
     } else {
       setText([]);
       setShowLogo(false);
@@ -42,7 +49,19 @@ const Screen = () => {
       i = 0;
       memCounter = 0;
     }
-  }
+  }, [i, memCounter, props.isOn, screenState]);
+
+  useEffect(() => {
+    if (props.isOn) {
+      setScreenState(screenStates.flash);
+    } else {
+      if (animationTimeoutRef.current)
+        clearTimeout(animationTimeoutRef.current);
+      setScreenState(screenStates.off);
+      setShowLogo(false);
+      setText([]);
+    }
+  }, [props.isOn]);
 
   useEffect(() => {
     if (screenState == screenStates.flash) {
@@ -154,7 +173,7 @@ const Screen = () => {
         background:
           "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 25%, rgba(94,194,61,1) 41%, rgba(172,217,126,1) 51%, rgba(93,190,61,1) 59%, rgba(80,142,60,1) 75%, rgba(8,8,8,1) 95%)",
       },
-      { delay: 0.7, duration: 0.02 }
+      { delay: 0.3, duration: 0.02 }
     );
     await animate(
       scope.current,
@@ -166,7 +185,7 @@ const Screen = () => {
 
   return (
     <div
-      className="screen"
+      className={`screen${screenState == screenStates.off ? " off" : ""}`}
       onClick={handleClick}>
       {screenState == screenStates.flash ? (
         <motion.div

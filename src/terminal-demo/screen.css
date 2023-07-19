@@ -9,7 +9,7 @@
   background-size: 100% 200%;
   animation: gradientAnimation 5s ease-in infinite;
   height: 100%;
-  color: #33ff00;
+  color: hsl(108, 100%, 50%);
   border-radius: 50% / 3%;
   z-index: 2;
 }
@@ -24,6 +24,10 @@
   }
 }
 
+.off {
+  background: rgb(28, 28, 28);
+}
+
 .screen:after {
   position: absolute;
   content: "";
@@ -36,8 +40,32 @@
   z-index: -2;
 }
 
+.screen:before {
+  content: " ";
+  opacity: 0.3;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 12px;
+  border-radius: 50% / 3%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.off::before {
+  background: none;
+}
+
 .screen-flash {
-  background: black;
+  background: rgb(28, 28, 28);
   height: 100%;
   width: 100%;
   border-radius: 50% / 3%;
