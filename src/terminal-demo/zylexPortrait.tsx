@@ -20,7 +20,11 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
   );
   const [scope, animate] = useAnimate();
   const glitch: GlitchHandle = useGlitch({
-    glitchTimeSpan: false,
+    playMode: "always",
+    timing: {
+      duration: 400,
+      iterations: 1,
+    },
     slice: {
       hueRotate: false,
       count: 10,
