@@ -35,13 +35,11 @@ const ZylexPortrait = () => {
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
         glitch.stopGlitch();
-      }, 300); // Adjust the duration for glitch effect (in milliseconds)
+      }, 300);
     };
 
-    // Start the rotation with the initial blinking duration (300ms)
     const rotationInterval = setInterval(rotateImage, 8000);
 
-    // Clean up the interval when the component unmounts
     return () => {
       clearInterval(rotationInterval);
       glitch.stopGlitch();
@@ -49,8 +47,8 @@ const ZylexPortrait = () => {
   }, [images]);
 
   return (
-    <div className="side-screen-border">
-      <div className="side-screen">
+    <div className="screen-border side-screen">
+      <div className="screen">
         <div className="zylex-portrait">
           <img
             ref={glitch.ref}
