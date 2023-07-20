@@ -1,3 +1,4 @@
+import "./zylex-writing.css";
 import { useState, useEffect, useRef } from "react";
 
 const ZylexWriting = () => {

@@ -22,17 +22,17 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
   const glitch: GlitchHandle = useGlitch({
     playMode: "always",
     timing: {
-      duration: 400,
+      duration: 800,
       iterations: 1,
     },
     slice: {
       hueRotate: false,
       count: 10,
-      velocity: 15,
+      velocity: 25,
       minHeight: 0.1,
       maxHeight: 0.3,
     },
-    shake: { velocity: 15, amplitudeX: 0.05, amplitudeY: 0.05 },
+    shake: { velocity: 15, amplitudeX: 0.05, amplitudeY: 0.15 },
     pulse: false,
   });
   const images = [

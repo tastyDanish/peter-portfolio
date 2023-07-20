@@ -5,25 +5,6 @@
   padding: 4px;
 }
 
-.zylex-typing {
-  width: 0%;
-  text-align: left;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: pre;
-  animation: fadeIn 300ms ease-in-out forwards;
-  animation-delay: 500ms;
-}
-
-@keyframes fadeIn {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
 input {
   flex-grow: 1;
   background: none;

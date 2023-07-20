@@ -27,3 +27,6 @@ venv/
 key.py
 
 .vscode/
+
+.space
+.env
