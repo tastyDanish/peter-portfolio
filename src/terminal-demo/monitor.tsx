@@ -23,7 +23,7 @@ const Monitor = () => {
               isOn={power}
               handlePower={handlePower}
             />
-            <ZylexPortrait />
+            <ZylexPortrait isOn={power} />
             <div className="tag-border">
               <div className="tag">UNICOMP</div>
             </div>
