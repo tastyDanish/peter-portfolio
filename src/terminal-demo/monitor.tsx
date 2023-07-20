@@ -2,6 +2,7 @@ import "./monitor.css";
 import Screen from "./screen";
 import Power from "./power";
 import { useState } from "react";
+import ZylexPortrait from "./zylexPortrait";
 
 const Monitor = () => {
   const [power, setPower] = useState(false);
@@ -22,6 +23,7 @@ const Monitor = () => {
               isOn={power}
               handlePower={handlePower}
             />
+            <ZylexPortrait />
             <div className="tag-border">
               <div className="tag">UNICOMP</div>
             </div>
