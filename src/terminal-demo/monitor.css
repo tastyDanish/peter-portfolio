@@ -161,12 +161,9 @@
 
 @media (max-width: 860px) {
   .monitor {
-    min-width: 0%;
-    max-width: 100%;
-    width: 96%;
-    height: 85%;
-    margin-left: 2%;
-    margin-right: 2%;
+    height: 80%;
+    padding-left: 0;
+    padding-right: 0;
   }
   .monitor-base {
     flex-direction: column;
@@ -174,7 +171,7 @@
   }
   .screen-border {
     flex-grow: 1;
-    width: 90%;
+    width: 100%;
     margin-left: 0;
     height: 80%;
   }
@@ -186,6 +183,11 @@
 }
 
 @media (max-width: 500px) {
+  .monitor {
+    height: 100%;
+    width: 115%;
+    padding: 0;
+  }
   .tag-border {
     display: none;
   }

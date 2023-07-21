@@ -18,3 +18,9 @@
   height: 90%;
   justify-content: center;
 }
+
+@media (max-width: 500px) {
+  .dashboard {
+    height: 100%;
+  }
+}

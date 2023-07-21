@@ -151,7 +151,7 @@
   overflow: hidden;
   white-space: pre;
   flex-shrink: 0;
-  animation: appearCharByChar 300ms steps(30) forwards;
+  animation: appearCharByChar 500ms steps(30) forwards;
 }
 
 @keyframes appearCharByChar {

@@ -86,13 +86,13 @@ const Screen = (props: ScreenProps) => {
   useEffect(() => {
     if (textQueue.length > 0) {
       setText([...text, textQueue[0]]);
-      setTimeout(() => setTextQueue(textQueue.slice(1)), 300);
+      setTimeout(() => setTextQueue(textQueue.slice(1)), 500);
     }
   }, [textQueue]);
 
   const clearThenType = (lines: string[]) => {
     setText([]);
-    setTimeout(() => setText(lines), 300);
+    setTimeout(() => setText(lines), 500);
   };
 
   const onEnter = useCallback(

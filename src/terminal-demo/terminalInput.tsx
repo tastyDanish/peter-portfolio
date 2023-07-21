@@ -23,7 +23,7 @@ const TerminalInput = (props: TerminalInputProps) => {
   }, [response]);
 
   useEffect(() => {
-    if (!loading && props.childRef.current) props.childRef.current.focus();
+    //if (!loading && props.childRef.current) props.childRef.current.focus();
   }, [loading]);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
