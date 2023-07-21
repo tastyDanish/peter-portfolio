@@ -36,6 +36,17 @@
   margin-left: 20%;
   font-weight: bolder;
   animation: littleFade 1800ms;
+  font-size: 16px;
+}
+
+.description {
+  font-family: "roboto-thin";
+  font-size: 20px;
+  margin-top: 10%;
+  margin-left: 5%;
+  animation: littleFade 2400ms;
+  text-align: left;
+  font-weight: bolder;
 }
 
 .instructions {
@@ -46,4 +57,13 @@
   animation: littleFade 3000ms;
   text-align: left;
   font-weight: bolder;
+}
+
+@media (max-width: 860px) {
+  .instructions {
+    margin-top: 10%;
+  }
+  .peter-name {
+    font-size: 36px;
+  }
 }

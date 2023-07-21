@@ -17,10 +17,6 @@ const TerminalInput = (props: TerminalInputProps) => {
   const messageHistory = useRef<chatRecord[]>([]);
 
   useEffect(() => {
-    if (props.childRef.current) props.childRef.current.focus();
-  }, []);
-
-  useEffect(() => {
     if (response && chatEnabled)
       props.onEnter(`ZYLEX: ${response}`, false, true);
     setloading(false);
