@@ -22,9 +22,6 @@
 }
 
 @media (max-width: 500px) {
-  .app {
-    height: calc(100vh - 50px);
-  }
   .dashboard {
     width: 115%;
     height: 120%;
