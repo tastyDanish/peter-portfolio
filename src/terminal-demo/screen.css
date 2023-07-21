@@ -98,8 +98,8 @@
 
 .screen-logo {
   position: absolute;
-  height: 180px;
-  width: 200px;
+  height: 130px;
+  width: 150px;
   right: 15px;
   top: 10px;
   background: url(unicomp_logo.svg);
@@ -108,8 +108,10 @@
 }
 
 .screen-logo::after {
+  text-align: right;
   position: absolute;
-  bottom: -10%;
+  width: 100%;
+  bottom: -30%;
   right: 5%;
   content: "VENOGRAPH TECHNOLOGIES";
   color: #33ff00;

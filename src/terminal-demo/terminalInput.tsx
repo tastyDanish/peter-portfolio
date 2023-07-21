@@ -1,5 +1,5 @@
-import React, { RefObject, useEffect } from "react";
-import { chat } from "../api/api";
+import React, { RefObject, useEffect, useRef } from "react";
+import { chat, chatRecord } from "../api/api";
 import "./terminalInput.css";
 import ZylexWriting from "./zylexWriting";
 
@@ -14,6 +14,7 @@ const TerminalInput = (props: TerminalInputProps) => {
   const [chatEnabled, setChatEnabled] = React.useState(false);
   const [loading, setloading] = React.useState(false);
   const [response, setResponse] = React.useState("");
+  const messageHistory = useRef<chatRecord[]>([]);
 
   useEffect(() => {
     if (props.childRef.current) props.childRef.current.focus();
@@ -55,10 +56,14 @@ const TerminalInput = (props: TerminalInputProps) => {
   };
 
   const handleChat = () => {
+    if (messageHistory.current.length > 8) messageHistory.current.shift();
     props.onEnter(`USER: ${inputValue}`, false, true);
+    messageHistory.current.push({ role: "user", message: inputValue });
     try {
-      chat(inputValue).then((response) => {
+      chat(messageHistory.current).then((response) => {
+        messageHistory.current.push({ role: "system", message: response });
         setResponse(response);
+        console.log("curent message history: ", messageHistory.current);
       });
     } catch (error) {
       // Handle error

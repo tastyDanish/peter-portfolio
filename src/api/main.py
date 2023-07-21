@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List
 import openai
 from pydantic import BaseModel
 import os
@@ -92,16 +93,41 @@ Carbonquill - A project built with friends to create summarized notes from dunge
 Wacky Racers - a racing game discord bot to determine fantasy football draft order.
 - python bot using the discord API to let users choose their emoji racer.
 - dynamic output, with different race rule sets.
+
+CONTACT:
+pndaal@gmail.com
+
 """
 
 
-def chat_with_gpt(prompt, model="gpt-3.5-turbo"):
+class chatHistory(BaseModel):
+    role: str
+    message: str
+
+
+class history(BaseModel):
+    messages: List[chatHistory]
+
+
+def chat_with_gpt(messages, model="gpt-3.5-turbo"):
+    with_system = (
+        [
+            {
+                "role": "system",
+                "content": "You are pretending to be Zylex, a wizard imprisoned by Peter Lansdaal to get him a job.",
+            }
+        ]
+        + [{"role": x.role, "content": x.message} for x in messages]
+        + [
+            {
+                "role": "system",
+                "content": system,
+            }
+        ]
+    )
     response = openai.ChatCompletion.create(
         model=model,
-        messages=[
-            {"role": "user", "content": prompt},
-            {"role": "system", "content": system},
-        ],
+        messages=with_system,
         max_tokens=800,
         temperature=0.7,
     )
@@ -119,11 +145,7 @@ def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 
 
-class text(BaseModel):
-    message: str
-
-
 @app.post("/chat")
-def prompt(text: text):
-    response = chat_with_gpt(text.message)
+def prompt(messages: history):
+    response = chat_with_gpt(messages.messages)
     return response
