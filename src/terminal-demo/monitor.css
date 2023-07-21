@@ -194,8 +194,10 @@
   .right-panel {
     justify-content: center;
     padding-bottom: 70px;
+    padding-left: 0px;
   }
   .screen-border {
     min-width: 260px;
+    height: 70%;
   }
 }

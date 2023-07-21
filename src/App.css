@@ -24,14 +24,14 @@
 @media (max-width: 500px) {
   .dashboard {
     width: 115%;
-    height: 120%;
+    height: 110%;
     margin-top: -10%;
     margin-bottom: -10%;
   }
 }
 @media (max-width: 380px) {
   .dashboard {
-    height: 120%;
+    height: 110%;
     margin-top: -13%;
     margin-bottom: -10%;
   }

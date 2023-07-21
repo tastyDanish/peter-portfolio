@@ -8,11 +8,12 @@
   );
   background-size: 100% 200%;
   animation: gradientAnimation 5s ease-in infinite;
-  height: 100%;
+  height: calc(100% - 20px);
   color: hsl(108, 100%, 50%);
   text-shadow: 1px 1px 8px hsla(108, 100%, 50%, 0.5);
   border-radius: 50% / 3%;
   z-index: 2;
+  padding: 10px;
 }
 
 @keyframes gradientAnimation {
