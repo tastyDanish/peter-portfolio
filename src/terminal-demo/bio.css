@@ -46,7 +46,7 @@
 .description {
   font-family: "roboto-thin";
   font-size: 18px;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 5%;
   animation: littleFade 2400ms;
   text-align: left;
@@ -65,7 +65,7 @@
 
 @media (max-width: 860px) {
   .instructions {
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .peter-name {
