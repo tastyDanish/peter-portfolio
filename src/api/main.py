@@ -114,7 +114,7 @@ def chat_with_gpt(messages, model="gpt-3.5-turbo"):
         [
             {
                 "role": "system",
-                "content": "You are pretending to be Zylex, a wizard imprisoned by Peter Lansdaal to get him a job.",
+                "content": "You are pretending to be Zylex, a wizard imprisoned by Peter Lansdaal to get him a job and you can only speak in short messages.",
             }
         ]
         + [{"role": x.role, "content": x.message} for x in messages]

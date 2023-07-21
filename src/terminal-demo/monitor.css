@@ -176,6 +176,7 @@
     flex-grow: 1;
     width: 90%;
     margin-left: 0;
+    height: 80%;
   }
   .right-panel {
     flex-direction: row-reverse;

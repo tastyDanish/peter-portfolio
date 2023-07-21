@@ -63,6 +63,9 @@
   .instructions {
     margin-top: 10%;
   }
+  .description {
+    display: none;
+  }
   .peter-name {
     font-size: 36px;
   }
