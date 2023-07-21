@@ -25,6 +25,7 @@ const Screen = (props: ScreenProps) => {
   );
   const [showLogo, setShowLogo] = useState(false);
   const [scope, animate] = useAnimate();
+  const [terminalReady, setTerminalReady] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -88,8 +89,11 @@ const Screen = (props: ScreenProps) => {
 
   useEffect(() => {
     if (textQueue.length > 0) {
+      setTerminalReady(false);
       setText([...text, textQueue[0]]);
       setTimeout(() => setTextQueue(textQueue.slice(1)), 500);
+    } else {
+      setTerminalReady(true);
     }
   }, [textQueue]);
 
@@ -216,7 +220,7 @@ const Screen = (props: ScreenProps) => {
             ))}
           </div>
           <TerminalInput
-            ready={screenState == screenStates.ready}
+            ready={terminalReady}
             onEnter={onEnter}
             childRef={childRef}
           />

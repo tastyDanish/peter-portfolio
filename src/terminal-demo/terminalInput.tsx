@@ -22,30 +22,14 @@ const TerminalInput = (props: TerminalInputProps) => {
     setloading(false);
   }, [response]);
 
-  useEffect(() => {
-    //if (!loading && props.childRef.current) props.childRef.current.focus();
-  }, [loading]);
-
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      // if (inputValue.toLowerCase() == "chat") {
-      //   setChatEnabled(!chatEnabled);
-      //   if (!chatEnabled) {
-      //     props.onEnter(
-      //       "chat enabled. You can now talk to the assistant",
-      //       false
-      //     );
-      //   } else {
-      //     props.onEnter("chat disabled.", false);
-      //   }
-      // } else {
       if (chatEnabled) {
         setloading(true);
         handleChat();
       } else {
         props.onEnter(inputValue, false);
       }
-      //}
 
       setInputValue("");
     }
@@ -62,7 +46,6 @@ const TerminalInput = (props: TerminalInputProps) => {
         console.log("curent message history: ", messageHistory.current);
       });
     } catch (error) {
-      // Handle error
       setResponse("ERROR");
       console.error(error);
     }
