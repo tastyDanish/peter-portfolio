@@ -109,7 +109,6 @@
   padding-right: 10px;
   padding-bottom: 5px;
   border-radius: 50% / 3%;
-  margin-left: 2%;
   z-index: 2;
 }
 
@@ -161,19 +160,20 @@
 
 @media (max-width: 860px) {
   .monitor {
-    height: 80%;
+    height: 90%;
     padding-left: 0;
     padding-right: 0;
   }
   .monitor-base {
     flex-direction: column;
     align-items: center;
+    padding-bottom: 12px;
+    height: calc(100% - 36px);
   }
   .screen-border {
     flex-grow: 1;
-    width: 100%;
-    margin-left: 0;
-    height: 80%;
+    width: 95%;
+    height: 90%;
   }
   .right-panel {
     flex-direction: row-reverse;
@@ -193,5 +193,9 @@
   }
   .right-panel {
     justify-content: center;
+    padding-bottom: 10px;
+  }
+  .screen-border {
+    min-width: 260px;
   }
 }

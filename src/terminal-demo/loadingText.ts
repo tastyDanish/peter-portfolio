@@ -18,24 +18,24 @@ const loadingText = (memCounter: number, counter: number) => {
   }
 
   if (counter > 2) {
-    loadingArray.push("Verifying DMI Hardware Pool...");
+    loadingArray.push("Verifying DMI Hardware Pool");
     loadingArray.push(
-      `     Detecting .....   ${
-        counter > 3 ? `SATA DRIVE 1 ${counter > 5 ? "OK" : ""}` : ""
+      `  Detecting...   ${
+        counter > 3 ? `DRIVE 1 ${counter > 5 ? "OK" : ""}` : ""
       }`
     );
   }
 
   if (counter > 6)
     loadingArray.push(
-      `     Detecting .....   ${
-        counter > 7 ? `SATA DRIVE 2 ${counter > 9 ? "OK" : ""}` : ""
+      `  Detecting...   ${
+        counter > 7 ? `DRIVE 2 ${counter > 9 ? "OK" : ""}` : ""
       }`
     );
   if (counter > 10)
     loadingArray.push(
-      `     Detecting .....   ${
-        counter > 11 ? `SATA DRIVE 3 ${counter > 13 ? "OK" : ""}` : ""
+      `  Detecting...   ${
+        counter > 11 ? `DRIVE 3 ${counter > 13 ? "OK" : ""}` : ""
       }`
     );
   if (counter > 14) {
