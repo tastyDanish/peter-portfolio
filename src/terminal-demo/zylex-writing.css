@@ -3,8 +3,8 @@
   text-align: left;
   overflow: hidden;
   white-space: pre;
-  animation: fadeIn 100ms ease-in-out forwards;
-  animation-delay: 500ms;
+  animation: fadeIn 400ms ease-in-out forwards;
+  animation-delay: 800ms;
 }
 
 @keyframes fadeIn {

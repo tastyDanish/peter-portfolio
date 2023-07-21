@@ -11,7 +11,7 @@ interface TerminalInputProps {
 
 const TerminalInput = (props: TerminalInputProps) => {
   const [inputValue, setInputValue] = React.useState("");
-  const [chatEnabled, setChatEnabled] = React.useState(false);
+  const [chatEnabled, setChatEnabled] = React.useState(true);
   const [loading, setloading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const messageHistory = useRef<chatRecord[]>([]);
@@ -28,24 +28,24 @@ const TerminalInput = (props: TerminalInputProps) => {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      if (inputValue.toLowerCase() == "chat") {
-        setChatEnabled(!chatEnabled);
-        if (!chatEnabled) {
-          props.onEnter(
-            "chat enabled. You can now talk to the assistant",
-            false
-          );
-        } else {
-          props.onEnter("chat disabled.", false);
-        }
+      // if (inputValue.toLowerCase() == "chat") {
+      //   setChatEnabled(!chatEnabled);
+      //   if (!chatEnabled) {
+      //     props.onEnter(
+      //       "chat enabled. You can now talk to the assistant",
+      //       false
+      //     );
+      //   } else {
+      //     props.onEnter("chat disabled.", false);
+      //   }
+      // } else {
+      if (chatEnabled) {
+        setloading(true);
+        handleChat();
       } else {
-        if (chatEnabled) {
-          setloading(true);
-          handleChat();
-        } else {
-          props.onEnter(inputValue, false);
-        }
+        props.onEnter(inputValue, false);
       }
+      //}
 
       setInputValue("");
     }

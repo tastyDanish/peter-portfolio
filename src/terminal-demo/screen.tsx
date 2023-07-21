@@ -73,7 +73,10 @@ const Screen = (props: ScreenProps) => {
       animateLoading();
     }
     if (screenState === screenStates.ready) {
-      setText(["Peter Lansdaal", "Hi, I'm a software dev"]);
+      onEnter(
+        "ZYLEX: Greetings! As the imprisoned wizard Zylex, I am here to assist in getting Peter Lansdaal a job. Do you have any questions about Peter Lansdaal's qualifications?",
+        false
+      );
     }
   }, [screenState]);
 

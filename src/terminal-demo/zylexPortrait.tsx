@@ -100,7 +100,7 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
           background:
             "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 40%, rgba(94,194,61,1) 45%, rgba(172,217,126,1) 50%, rgba(93,190,61,1) 55%, rgba(80,142,60,1) 60%, rgba(8,8,8,1) 95%)",
         },
-        { delay: 0.3, duration: 0.02 }
+        { delay: 0.1, duration: 0.02 }
       );
     if (scope.current)
       await animate(
