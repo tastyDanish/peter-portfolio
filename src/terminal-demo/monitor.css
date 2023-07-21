@@ -14,7 +14,6 @@
 .border-box {
   position: relative;
   width: 90%;
-  min-width: 760px;
   background-color: #e3ddc8;
   padding: 30px 20px 30px;
   border-radius: 50% / 2%;
@@ -160,4 +159,38 @@
   padding-left: 20px;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (max-width: 860px) {
+  .monitor {
+    min-width: 0%;
+    max-width: 100%;
+    width: 96%;
+    height: 85%;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  .monitor-base {
+    flex-direction: column;
+    align-items: center;
+  }
+  .screen-border {
+    flex-grow: 1;
+    width: 90%;
+    margin-left: 0;
+  }
+  .right-panel {
+    flex-direction: row-reverse;
+    height: auto;
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .tag-border {
+    display: none;
+  }
+  .right-panel {
+    justify-content: center;
+  }
 }
