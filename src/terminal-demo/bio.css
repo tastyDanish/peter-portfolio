@@ -3,10 +3,14 @@
   text-shadow: none;
   color: rgb(255, 255, 255);
   text-align: left;
-  padding-top: 5%;
   font-family: "roboto-thin";
   width: 90%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 @keyframes littleFade {
@@ -41,7 +45,7 @@
 
 .description {
   font-family: "roboto-thin";
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 10%;
   margin-left: 5%;
   animation: littleFade 2400ms;
@@ -51,7 +55,7 @@
 
 .instructions {
   font-family: "roboto-thin";
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 5%;
   margin-left: 5%;
   animation: littleFade 3000ms;
