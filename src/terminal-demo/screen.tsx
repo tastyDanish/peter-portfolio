@@ -54,10 +54,12 @@ const Screen = (props: ScreenProps) => {
 
   useEffect(() => {
     if (props.isOn) {
+      setText([]);
       setScreenState(screenStates.flash);
     } else {
       if (animationTimeoutRef.current)
         clearTimeout(animationTimeoutRef.current);
+      setTerminalReady(false);
       setScreenState(screenStates.off);
       setShowLogo(false);
       setText([]);
@@ -93,7 +95,7 @@ const Screen = (props: ScreenProps) => {
       setText([...text, textQueue[0]]);
       setTimeout(() => setTextQueue(textQueue.slice(1)), 500);
     } else {
-      setTerminalReady(true);
+      if (screenState === screenStates.ready) setTerminalReady(true);
     }
   }, [textQueue]);
 

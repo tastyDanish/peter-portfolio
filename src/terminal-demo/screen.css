@@ -89,14 +89,15 @@
 }
 
 .screen-content {
-  height: calc(98% - 40px);
-  padding: 20px 20px 20px;
+  height: 95%;
+  padding-left: 12px;
+  padding-top: 12px;
   opacity: 0.6;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  width: calc(100% - 40px);
+  width: 95%;
 }
 
 .screen-logo {
