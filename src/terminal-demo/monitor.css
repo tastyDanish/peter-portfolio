@@ -60,14 +60,16 @@
 
 .monitor-base {
   background-color: #605c63;
-  height: calc(100% - 72px);
-  width: calc(100% - 72px);
-  padding: 36px;
+  height: calc(100% - 48px);
+  width: calc(100% - 48px);
+  padding: 24px;
   border-radius: 50% / 2%;
   position: relative;
   box-shadow: rgb(96 92 99 / 80%) 0px 0px 4px 2px;
   z-index: 1;
   display: flex;
+  justify-content: space-between;
+  gap: 2%;
 }
 
 .monitor-base:before {
@@ -110,6 +112,7 @@
   padding-right: 10px;
   padding-bottom: 5px;
   border-radius: 50% / 3%;
+  margin-left: 2%;
   z-index: 2;
 }
 
@@ -136,18 +139,25 @@
 }
 
 .tag-border {
-  background: #3b3636;
+  background: #433e3e;
   padding: 4px;
-  position: absolute;
-  bottom: 10%;
-  right: 4%;
 }
 .tag {
-  background: #080808;
+  background: #292828;
   padding-left: 10px;
   padding-right: 5px;
-  color: white;
+  color: rgb(203, 195, 195);
   letter-spacing: 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
+}
+
+.right-panel {
+  display: flex;
+  height: 90%;
+  width: 25%;
+  flex-direction: column;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: space-between;
 }

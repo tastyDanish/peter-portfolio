@@ -26,7 +26,11 @@
 }
 
 .off {
-  background: rgb(28, 28, 28) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(45, 47, 43, 1) 0%,
+    rgba(33, 31, 31, 1) 50%
+  ) !important;
 }
 
 .screen:after {
@@ -93,7 +97,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 40px);
 }
 
 .screen-logo {

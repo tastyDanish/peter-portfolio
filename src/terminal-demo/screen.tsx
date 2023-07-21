@@ -4,6 +4,7 @@ import TerminalInput from "./terminalInput";
 import { motion, useAnimate } from "framer-motion";
 import loadingText from "./loadingText";
 import { splitStringAtIndex } from "../utils/string-utils";
+import Bio from "./bio";
 
 enum screenStates {
   off,
@@ -64,7 +65,9 @@ const Screen = (props: ScreenProps) => {
 
   useEffect(() => {
     if (screenState === screenStates.flash) {
-      flashAnimation().then((_) => setScreenState(screenStates.loading));
+      flashAnimation().then((_) => {
+        if (scope.current) setScreenState(screenStates.loading);
+      });
     }
     if (screenState === screenStates.loading) {
       animateLoading();
@@ -163,33 +166,38 @@ const Screen = (props: ScreenProps) => {
     if (childRef.current) childRef.current.focus();
   };
 
-  async function flashAnimation() {
-    await animate(
-      scope.current,
-      {
-        opacity: 0.6,
-        background:
-          "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 25%, rgba(94,194,61,1) 41%, rgba(172,217,126,1) 51%, rgba(93,190,61,1) 59%, rgba(80,142,60,1) 75%, rgba(8,8,8,1) 95%)",
-      },
-      { delay: 0.3, duration: 0.02 }
-    );
-    await animate(
-      scope.current,
-      { opacity: 0 },
-      { ease: "easeOut", duration: 0.01 }
-    );
-    await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
-  }
+  const flashAnimation = async () => {
+    if (scope.current)
+      await animate(
+        scope.current,
+        {
+          opacity: 0.6,
+          background:
+            "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 25%, rgba(94,194,61,1) 41%, rgba(172,217,126,1) 51%, rgba(93,190,61,1) 59%, rgba(80,142,60,1) 75%, rgba(8,8,8,1) 95%)",
+        },
+        { delay: 0.1, duration: 0.02 }
+      );
+    if (scope.current)
+      await animate(
+        scope.current,
+        { opacity: 0 },
+        { ease: "easeOut", duration: 0.01 }
+      );
+    if (scope.current)
+      await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
+  };
 
   return (
     <div
       className={`screen${screenState == screenStates.off ? " off" : ""}`}
       onClick={handleClick}>
-      {screenState == screenStates.flash ? (
+      {screenState === screenStates.flash ? (
         <motion.div
           className="screen-flash"
           ref={scope}
         />
+      ) : screenState === screenStates.off ? (
+        <Bio />
       ) : (
         <div className="screen-content">
           {showLogo ? <div className="screen-logo" /> : null}

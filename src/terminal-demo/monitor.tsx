@@ -19,13 +19,15 @@ const Monitor = () => {
             <div className="screen-border">
               <Screen isOn={power} />
             </div>
-            <Power
-              isOn={power}
-              handlePower={handlePower}
-            />
-            <ZylexPortrait isOn={power} />
-            <div className="tag-border">
-              <div className="tag">UNICOMP</div>
+            <div className="right-panel">
+              <Power
+                isOn={power}
+                handlePower={handlePower}
+              />
+              <ZylexPortrait isOn={power} />
+              <div className="tag-border">
+                <div className="tag">UNICOMP</div>
+              </div>
             </div>
           </div>
         </div>

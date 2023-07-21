@@ -48,7 +48,9 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
 
   useEffect(() => {
     if (portraitState === portraitStates.flash) {
-      flashAnimation().then((_) => setPortraitState(portraitStates.loading));
+      flashAnimation().then((_) => {
+        if (scope.current) setPortraitState(portraitStates.loading);
+      });
     }
     if (portraitState === portraitStates.loading) {
       const timeout = setTimeout(
@@ -89,23 +91,26 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
     }
   }, [currentImageIndex]);
 
-  async function flashAnimation() {
-    await animate(
-      scope.current,
-      {
-        opacity: 0.6,
-        background:
-          "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 40%, rgba(94,194,61,1) 45%, rgba(172,217,126,1) 50%, rgba(93,190,61,1) 55%, rgba(80,142,60,1) 60%, rgba(8,8,8,1) 95%)",
-      },
-      { delay: 0.3, duration: 0.02 }
-    );
-    await animate(
-      scope.current,
-      { opacity: 0 },
-      { ease: "easeOut", duration: 0.01 }
-    );
-    await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
-  }
+  const flashAnimation = async () => {
+    if (scope.current)
+      await animate(
+        scope.current,
+        {
+          opacity: 0.6,
+          background:
+            "linear-gradient(180deg, rgba(8,8,8,1) 5%, rgba(94,194,61,1) 40%, rgba(94,194,61,1) 45%, rgba(172,217,126,1) 50%, rgba(93,190,61,1) 55%, rgba(80,142,60,1) 60%, rgba(8,8,8,1) 95%)",
+        },
+        { delay: 0.3, duration: 0.02 }
+      );
+    if (scope.current)
+      await animate(
+        scope.current,
+        { opacity: 0 },
+        { ease: "easeOut", duration: 0.01 }
+      );
+    if (scope.current)
+      await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
+  };
 
   return (
     <div className={`screen-border side-screen`}>
@@ -116,8 +121,13 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
         {portraitState == portraitStates.flash ? (
           <motion.div
             className="screen-flash"
-            ref={scope}
-          />
+            ref={scope}>
+            <img
+              className="hiding-zylex"
+              src={images[0]}
+              alt="zylex-hiding"
+            />
+          </motion.div>
         ) : portraitState == portraitStates.ready ? (
           <div className="zylex-portrait">
             <img
@@ -127,9 +137,17 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
             />
           </div>
         ) : portraitState === portraitStates.loading ? (
-          <div className="zylex-loading-text"></div>
+          <img
+            className="hiding-zylex"
+            src={images[0]}
+            alt="zylex-hiding"
+          />
         ) : (
-          <></>
+          <img
+            className="hiding-zylex"
+            src={images[0]}
+            alt="zylex-hiding"
+          />
         )}
       </div>
     </div>

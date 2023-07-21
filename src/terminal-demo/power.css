@@ -4,14 +4,9 @@
   --switch: rgb(109, 101, 99);
   --switch-accent: rgb(79, 69, 67);
   --switch-on: hsl(107, 40%, 50%);
+  --switch-off: hsl(0, 40%, 51%);
   --text-on: #fff;
   --text-off: #ddd;
-}
-
-.power {
-  position: absolute;
-  top: 6%;
-  right: 4%;
 }
 
 .rocker {
@@ -75,6 +70,22 @@
   transform: rotate(15deg) skewX(15deg);
 }
 
+@keyframes flashingRed {
+  0% {
+    background-image: var(--switch);
+  }
+  50% {
+    background-image: radial-gradient(
+      at right,
+      var(--switch-off) 0%,
+      var(--switch) 75%
+    );
+  }
+  100% {
+    background-image: var(--switch);
+  }
+}
+
 .switch-right {
   border-radius: 0px 5px 5px 0px;
   right: 0.3rem;
@@ -135,6 +146,7 @@ input:checked + .switch-left + .switch-right {
   height: 3rem;
   width: 3rem;
   transform: rotate(-15deg) skewX(-15deg);
+  animation: flashingRed 3s infinite;
 }
 
 input:checked + .switch-left + .switch-right::before {

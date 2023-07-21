@@ -1,0 +1,49 @@
+.peter-header {
+  opacity: 1;
+  text-shadow: none;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  padding-top: 5%;
+  font-family: "roboto-thin";
+  width: 90%;
+  height: 100%;
+}
+
+@keyframes littleFade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.intro {
+  font-size: 16px;
+  font-weight: bold;
+  animation: littleFade 600ms;
+}
+
+.peter-name {
+  margin-left: 10%;
+  font-family: "roboto-bold";
+  font-size: 48px;
+  animation: littleFade 1200ms;
+}
+
+.title {
+  margin-left: 20%;
+  font-weight: bolder;
+  animation: littleFade 1800ms;
+}
+
+.instructions {
+  font-family: "roboto-thin";
+  font-size: 20px;
+  margin-top: 5%;
+  margin-left: 5%;
+  animation: littleFade 3000ms;
+  text-align: left;
+  font-weight: bolder;
+}
