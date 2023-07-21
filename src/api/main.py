@@ -10,12 +10,10 @@ load_dotenv()
 
 # Access environment variables
 api_key = os.getenv("GPT_KEY")
+my_origins = os.getenv("ORIGINS")
 
 openai.api_key = api_key
-origins = [
-    "http://localhost",
-    "http://localhost:3000",  # Replace with your React app's URL
-]
+origins = my_origins
 
 app = FastAPI()
 app.add_middleware(

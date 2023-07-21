@@ -6,8 +6,13 @@ micros:
     engine: python3.9
     primary: true
     run: uvicorn main:app
+    public_routes:
+      - "/chat"
     presets:
       env:
         - name: GPT_KEY
           description: chatgpt key
+          default: ""
+        - name: ORIGINS
+          description: where you can get requests from
           default: ""

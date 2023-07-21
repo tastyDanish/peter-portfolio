@@ -1,6 +1,6 @@
 import { GlitchHandle, useGlitch } from "react-powerglitch";
 import "./zylexPortrait.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useAnimate } from "framer-motion";
 
 enum portraitStates {
@@ -20,11 +20,7 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
   );
   const [scope, animate] = useAnimate();
   const glitch: GlitchHandle = useGlitch({
-    playMode: "always",
-    timing: {
-      duration: 800,
-      iterations: 1,
-    },
+    glitchTimeSpan: false,
     slice: {
       hueRotate: false,
       count: 10,
@@ -32,7 +28,7 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
       minHeight: 0.1,
       maxHeight: 0.3,
     },
-    shake: { velocity: 15, amplitudeX: 0.05, amplitudeY: 0.15 },
+    shake: { velocity: 15, amplitudeX: 0.05, amplitudeY: 0.25 },
     pulse: false,
   });
   const images = [
@@ -51,40 +47,47 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
   }, [props.isOn]);
 
   useEffect(() => {
-    glitch.stopGlitch();
-  }, []);
-
-  useEffect(() => {
     if (portraitState === portraitStates.flash) {
       flashAnimation().then((_) => setPortraitState(portraitStates.loading));
     }
     if (portraitState === portraitStates.loading) {
       const timeout = setTimeout(
-        (_) => setPortraitState(portraitStates.ready),
+        () => setPortraitState(portraitStates.ready),
         4000
       );
       return () => {
         clearInterval(timeout);
       };
     }
-  }, [portraitState]);
+    if (portraitState === portraitStates.ready) {
+      const timeout = setTimeout((_) => glitch.stopGlitch(), 400);
+      return () => {
+        clearInterval(timeout);
+      };
+    }
+  }, [portraitState, glitch]);
 
   useEffect(() => {
-    const rotateImage = () => {
-      glitch.startGlitch();
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        glitch.stopGlitch();
-      }, 300);
-    };
-
-    const rotationInterval = setInterval(rotateImage, 8000);
+    const rotationInterval = setInterval(
+      () =>
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length),
+      8000
+    );
 
     return () => {
       clearInterval(rotationInterval);
-      glitch.stopGlitch();
     };
   }, [images]);
+
+  useEffect(() => {
+    if (portraitState === portraitStates.ready) {
+      glitch.startGlitch();
+      const glitchTimeout = setTimeout(() => glitch.stopGlitch(), 400);
+      return () => {
+        clearInterval(glitchTimeout);
+      };
+    }
+  }, [currentImageIndex]);
 
   async function flashAnimation() {
     await animate(
@@ -123,6 +126,8 @@ const ZylexPortrait = (props: ZylexPortraitProps) => {
               alt="Zylex Portrait"
             />
           </div>
+        ) : portraitState === portraitStates.loading ? (
+          <div className="zylex-loading-text"></div>
         ) : (
           <></>
         )}

@@ -26,7 +26,6 @@ const TerminalInput = (props: TerminalInputProps) => {
   }, [response]);
 
   useEffect(() => {
-    console.log("loading has changed to ", loading);
     if (!loading && props.childRef.current) props.childRef.current.focus();
   }, [loading]);
 
