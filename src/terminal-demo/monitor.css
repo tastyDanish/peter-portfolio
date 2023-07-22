@@ -158,6 +158,80 @@
   justify-content: space-between;
 }
 
+.scroll-container {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 100px);
+  z-index: 100;
+  transform: translateY(1000px);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.paper-container {
+  display: flex;
+  height: 2000px;
+  width: 60%;
+  justify-content: center;
+}
+
+.paper {
+  height: 100%;
+  width: 90%;
+  background-color: #edece0;
+}
+.dotmatrix-holes {
+  background-image: url(dotmatrix_hole.svg);
+  background-repeat: repeat-y;
+  height: 2000px;
+  width: 7%;
+  background-size: contain;
+}
+
+.paper::before,
+.paper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 10px; /* Adjust the width as needed for the size of the holes */
+  height: 100%;
+  background-color: transparent; /* Make the hole transparent */
+}
+
+/* Position the left hole */
+.paper::before {
+  left: 0;
+}
+
+/* Position the right hole */
+.paper::after {
+  right: 0;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+  left: 20px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgb(138, 137, 170);
+}
+
+/* Handle on hover */
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(178, 178, 186);
+}
+
 @media (max-width: 860px) {
   .monitor {
     height: 90%;
@@ -173,7 +247,7 @@
   .screen-border {
     flex-grow: 1;
     width: 95%;
-    height: 90%;
+    height: 70%;
   }
   .right-panel {
     flex-direction: row-reverse;

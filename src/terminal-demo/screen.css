@@ -90,8 +90,7 @@
 }
 
 .screen-content {
-  height: 95%;
-  padding-left: 12px;
+  height: 90%;
   padding-top: 12px;
   opacity: 0.6;
   display: flex;
