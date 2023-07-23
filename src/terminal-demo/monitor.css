@@ -205,12 +205,20 @@
   .screen-border {
     flex-grow: 1;
     width: 95%;
-    height: 70%;
+    height: 60%;
   }
   .right-panel {
     flex-direction: row-reverse;
-    height: auto;
-    width: 90%;
+    justify-content: center;
+    gap: 40px;
+    height: 30%;
+    width: 100%;
+    max-width: 90%;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  .button-panel {
+    margin-bottom: 0px;
   }
 }
 
@@ -225,17 +233,11 @@
   }
   .right-panel {
     justify-content: center;
-    padding-bottom: 70px;
+    margin-bottom: 30px;
     padding-left: 0px;
   }
   .screen-border {
     min-width: 260px;
-    height: 70%;
-  }
-}
-
-@media (max-height: 648px) {
-  .tag-border {
-    display: none;
+    height: 90%;
   }
 }
