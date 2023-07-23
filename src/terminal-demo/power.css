@@ -68,6 +68,7 @@
   height: 3rem;
   width: 3rem;
   transition: 100ms;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .switch-left {

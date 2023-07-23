@@ -59,7 +59,7 @@ resume = {
                     ],
                 },
                 {
-                    "header": "Systems Developer for Expeditors from September 2014 to March 2018",
+                    "header": "Systems Developer at Expeditors from September 2014 to March 2018",
                     "content": [
                         "Developed an automated Disaster Recover Pipeline with Bash scripts on Linux to ensure data integrity and availability in case of system failures or disruptions.",
                         "Instrumented monitoring on Java applications and developed custom dashboards using a Postgres DB, providing real-time analysis into system performance, metrics, and health.",

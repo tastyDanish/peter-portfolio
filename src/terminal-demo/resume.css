@@ -27,7 +27,7 @@
   max-width: 800px;
   min-width: 210px;
   background-color: #edece0;
-  padding: 0px 5% 10px;
+  padding: 30px 5% 10px;
   text-align: left;
 }
 
@@ -45,9 +45,17 @@ h1 {
   height: 50px;
   width: 50px;
   position: absolute;
+  opacity: 0.4;
+}
+
+.paper .close img {
   right: 10px;
   top: 10px;
-  opacity: 0.4;
+}
+
+.paper .download img {
+  left: 10px;
+  top: 10px;
 }
 
 .paper img:hover {
@@ -90,13 +98,16 @@ h1 {
   }
 }
 
+@media (max-width: 650px) {
+}
+
 @media (max-width: 360px) {
   .scroll-container {
     margin-top: 13%;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
   .dotmatrix-holes {
     display: none;
   }

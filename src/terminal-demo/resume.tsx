@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { getResume, resumeRecord, sectionRecord } from "../api/api";
 import closeIcon from "./close-paper.svg";
+import downloadIcon from "./download.svg";
+import JsPDF from "jspdf";
 
 export interface ResumeProps {
   showResume: boolean;
@@ -20,20 +22,22 @@ const Resume = (props: ResumeProps) => {
 
   const renderContent = (content: string[], sub: boolean) => {
     if (content.length === 1) {
-      return <div key={Math.random() * 100}>{content[0]}</div>;
+      return <div key={0}>{content[0]}</div>;
     }
     return content.map((text, index) => (
-      <li>
-        <div key={sub ? index : index + 100}>{text}</div>
+      <li key={sub ? index + 200 : index + 300}>
+        <div key={sub ? index + 400 : index + 100}>{text}</div>
       </li>
     ));
   };
 
   const renderHeader = (header: string, sub: boolean) => {
+    header = header.replace(" at ", "<br>");
+    header = header.replace(" from ", "<br>");
     if (sub) {
-      return <h3>{header}</h3>;
+      return <h3 dangerouslySetInnerHTML={{ __html: header }} />;
     }
-    return <h2>{header}</h2>;
+    return <h2 dangerouslySetInnerHTML={{ __html: header }} />;
   };
 
   const renderSection = (
@@ -44,7 +48,9 @@ const Resume = (props: ResumeProps) => {
     return (
       <div key={section.header}>
         {renderHeader(section.header, subSection)}
-        <ul>{renderContent(section.content, subSection)}</ul>
+        <ul key={section.header + "key"}>
+          {renderContent(section.content, subSection)}
+        </ul>
         {section.collection &&
           section.collection.length > 0 &&
           section.collection.map((subSection) =>
@@ -52,6 +58,16 @@ const Resume = (props: ResumeProps) => {
           )}
       </div>
     );
+  };
+
+  const generatePDF = () => {
+    const doc = new JsPDF("portrait", "pt", "a4");
+    const resumeRef = document.querySelector("#paper");
+    if (resumeRef) {
+      doc.html(resumeRef.outerHTML).then(() => {
+        doc.save("Peter Lansdaal Resume.pdf");
+      });
+    }
   };
 
   return (
@@ -67,12 +83,29 @@ const Resume = (props: ResumeProps) => {
           exit={{ y: "100%", transition: { ease: "easeIn", duration: 0.4 } }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="scroll-container">
-          <div className="paper-container">
+          <div
+            className="paper-container"
+            id="paper">
             <div className="dotmatrix-holes" />
             <div
               className="paper"
               onClick={(e) => e.stopPropagation()}>
               <button
+                className="download"
+                onClick={generatePDF}
+                style={{
+                  display: "none",
+                  border: "none",
+                  background: "transparent",
+                  cursor: "pointer",
+                }}>
+                <img
+                  src={downloadIcon}
+                  alt="Download"
+                />
+              </button>
+              <button
+                className="close"
                 onClick={props.onOverlayClick}
                 style={{
                   border: "none",
