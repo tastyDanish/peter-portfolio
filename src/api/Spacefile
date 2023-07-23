@@ -8,6 +8,7 @@ micros:
     run: uvicorn main:app
     public_routes:
       - "/chat"
+      - "/resume"
     presets:
       env:
         - name: GPT_KEY

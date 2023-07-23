@@ -1,0 +1,103 @@
+.scroll-container {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 100px);
+  z-index: 100;
+  transform: translateY(1000px);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.paper-container {
+  display: flex;
+  min-height: 2000px;
+  height: fit-content;
+  width: 80%;
+  justify-content: center;
+}
+
+.paper {
+  position: relative;
+  height: 100%;
+  width: 90%;
+  max-width: 800px;
+  min-width: 210px;
+  background-color: #edece0;
+  padding: 0px 5% 10px;
+  text-align: left;
+}
+
+.paper h2,
+h1 {
+  margin-top: 1%;
+  text-align: center;
+}
+
+.paper li {
+  margin-top: 8px;
+}
+
+.paper img {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  opacity: 0.4;
+}
+
+.paper img:hover {
+  opacity: 0.6;
+}
+
+.dotmatrix-holes {
+  background-image: url(dotmatrix_hole.svg);
+  background-repeat: repeat-y;
+  width: 60px;
+  background-size: contain;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+  left: 20px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgb(138, 137, 170);
+}
+
+/* Handle on hover */
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(178, 178, 186);
+}
+
+@media (max-width: 500px) {
+  .scroll-container {
+    margin-top: 13%;
+  }
+  .paper-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 360px) {
+  .scroll-container {
+    margin-top: 13%;
+  }
+}
+
+@media (max-width: 350px) {
+  .dotmatrix-holes {
+    display: none;
+  }
+}

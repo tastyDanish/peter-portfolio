@@ -1,9 +1,11 @@
 import "./monitor.css";
 import Screen from "./screen";
 import Power from "./power";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ZylexPortrait from "./zylexPortrait";
-import { AnimatePresence, motion, useAnimate, useScroll } from "framer-motion";
+import { getResume } from "../api/api";
+import Resume from "./resume";
+import CircleButton from "./circle-button";
 
 const Monitor = () => {
   const [power, setPower] = useState(false);
@@ -13,35 +15,16 @@ const Monitor = () => {
     setPower(power);
   };
 
-  const flipPaper = async () => {
+  const flipPaper = useCallback(() => {
     setShowPaper(!showPaper);
-  };
+  }, [setShowPaper, showPaper]);
 
   return (
     <>
-      <AnimatePresence>
-        {showPaper && (
-          <motion.div
-            onClick={(e) => {
-              e.stopPropagation();
-              flipPaper();
-            }}
-            initial={{ y: 1200 }}
-            animate={{ y: "-5%", overflowY: "auto" }}
-            exit={{ y: 1000 }}
-            transition={{ duration: 0.8 }}
-            className="scroll-container">
-            <div
-              className="paper-container"
-              onClick={(e) => e.stopPropagation()}>
-              <div className="dotmatrix-holes" />
-              <div className="paper" />
-              <div className="dotmatrix-holes" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      <Resume
+        showResume={showPaper}
+        onOverlayClick={flipPaper}
+      />
       <div className="monitor">
         <div className="border-box">
           <div className="monitor-details">
@@ -50,15 +33,18 @@ const Monitor = () => {
                 <Screen isOn={power} />
               </div>
               <div className="right-panel">
-                <Power
-                  isOn={power}
-                  handlePower={handlePower}
-                />
-                <button onClick={flipPaper}>show resume</button>
-                <ZylexPortrait isOn={power} />
-                <div className="tag-border">
-                  <div className="tag">UNICOMP</div>
+                <div className="button-panel">
+                  <CircleButton
+                    label="RESUME"
+                    handleOnClick={flipPaper}
+                  />
+                  <Power
+                    isOn={power}
+                    handlePower={handlePower}
+                  />
                 </div>
+
+                <ZylexPortrait isOn={power} />
               </div>
             </div>
           </div>

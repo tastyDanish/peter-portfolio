@@ -64,7 +64,7 @@
   box-shadow: rgb(96 92 99 / 80%) 0px 0px 4px 2px;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 2%;
 }
 
@@ -81,6 +81,7 @@
 }
 
 .monitor-base:after {
+  opacity: 0.7;
   position: absolute;
   content: "";
   top: -0.5%;
@@ -98,7 +99,7 @@
 .screen-border {
   position: relative;
   height: 95%;
-  width: 75%;
+  width: 65%;
   background: linear-gradient(
     180deg,
     rgba(41, 38, 41, 1) 0%,
@@ -137,6 +138,7 @@
 .tag-border {
   background: #433e3e;
   padding: 4px;
+  margin-top: 15px;
 }
 .tag {
   background: #292828;
@@ -151,85 +153,40 @@
 .right-panel {
   display: flex;
   height: 90%;
-  width: 25%;
+  max-width: 25%;
   flex-direction: column;
   padding-left: 20px;
   align-items: center;
   justify-content: space-between;
 }
+.button-panel {
+  position: relative;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  background: #79767a;
+  border-radius: 50% / 3%;
 
-.scroll-container {
+  padding-right: 20px;
+  padding-left: 30px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  z-index: 10;
+  box-shadow: rgb(49, 52, 55) 0px 6px 15px -5px;
+}
+
+.button-panel::after {
   position: absolute;
-  width: 100%;
-  height: calc(100vh - 100px);
-  z-index: 100;
-  transform: translateY(1000px);
-  overflow-y: hidden;
-  overflow-x: hidden;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  display: flex;
-  justify-content: center;
-}
-
-.paper-container {
-  display: flex;
-  height: 2000px;
-  width: 60%;
-  justify-content: center;
-}
-
-.paper {
-  height: 100%;
-  width: 90%;
-  background-color: #edece0;
-}
-.dotmatrix-holes {
-  background-image: url(dotmatrix_hole.svg);
-  background-repeat: repeat-y;
-  height: 2000px;
-  width: 7%;
-  background-size: contain;
-}
-
-.paper::before,
-.paper::after {
   content: "";
-  position: absolute;
-  top: 0;
-  width: 10px; /* Adjust the width as needed for the size of the holes */
-  height: 100%;
-  background-color: transparent; /* Make the hole transparent */
-}
-
-/* Position the left hole */
-.paper::before {
-  left: 0;
-}
-
-/* Position the right hole */
-.paper::after {
-  right: 0;
-}
-
-.scroll-container::-webkit-scrollbar {
-  width: 10px;
-  position: absolute;
-  left: 20px;
-}
-
-.scroll-container::-webkit-scrollbar-track {
-  background: none;
-}
-
-/* Handle */
-.scroll-container::-webkit-scrollbar-thumb {
-  background: rgb(138, 137, 170);
-}
-
-/* Handle on hover */
-.scroll-container::-webkit-scrollbar-thumb:hover {
-  background: rgb(178, 178, 186);
+  top: 3%;
+  bottom: 3%;
+  right: -2%;
+  left: -2%;
+  background: inherit;
+  border-radius: 2% / 50%;
+  z-index: -1;
 }
 
 @media (max-width: 860px) {
@@ -273,5 +230,11 @@
   .screen-border {
     min-width: 260px;
     height: 70%;
+  }
+}
+
+@media (max-height: 648px) {
+  .tag-border {
+    display: none;
   }
 }
