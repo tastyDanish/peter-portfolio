@@ -40,7 +40,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(53, 52, 52);
+  background-color: rgb(68, 66, 66);
   height: 100%;
   width: 100%;
   border-radius: 50%;
@@ -49,10 +49,10 @@
 .circle-button-casing::after {
   content: "";
   position: absolute;
-  bottom: 15%;
+  bottom: 12%;
   right: 4%;
   background: inherit;
-  height: 88%;
+  height: 90%;
   width: 94%;
   border-radius: 50%;
 }
