@@ -12,6 +12,7 @@
 .side-screen {
   width: 90%;
   height: auto;
+  max-height: 60%;
 }
 
 img {
@@ -32,6 +33,19 @@ img {
 }
 
 @media (max-width: 860px) {
+  .side-screen {
+    height: 100%;
+    max-height: 80%;
+    max-width: 20%;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 500px) {
   .side-screen {
     display: none;
   }

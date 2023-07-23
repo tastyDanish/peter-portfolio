@@ -44,23 +44,21 @@
 }
 
 .description {
-  font-family: "roboto-thin";
+  font-family: "roboto";
   font-size: 18px;
   margin-top: 5%;
   margin-left: 5%;
   animation: littleFade 2400ms;
   text-align: left;
-  font-weight: bolder;
 }
 
 .instructions {
-  font-family: "roboto-thin";
+  font-family: "roboto";
   font-size: 18px;
   margin-top: 5%;
   margin-left: 5%;
   animation: littleFade 3000ms;
   text-align: left;
-  font-weight: bolder;
 }
 
 @media (max-width: 860px) {

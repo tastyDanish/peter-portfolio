@@ -15,7 +15,7 @@ const Power = (props: PowerProps) => {
 
   return (
     <div className="power">
-      <label className="rocker rocker-small">
+      <label className={`rocker rocker-small ${!isChecked ? "right" : "left"}`}>
         <input
           id="switch"
           type="checkbox"

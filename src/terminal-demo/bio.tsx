@@ -10,7 +10,7 @@ const Bio = () => {
           I have a passion for performance, quality, and aesthetic.
         </div>
         <div className="instructions">
-          If you wish to know more flip the switch on the terminal and speak
+          If you wish to know more, flip the switch on the terminal and speak
           with Zylex.
         </div>
       </div>

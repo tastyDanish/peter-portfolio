@@ -4,6 +4,7 @@
   align-items: center;
   width: 95%;
   max-width: 1200px;
+  max-height: 700px;
   height: 90%;
   padding: 3%;
 }
@@ -64,7 +65,7 @@
   box-shadow: rgb(96 92 99 / 80%) 0px 0px 4px 2px;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 2%;
 }
 
@@ -81,6 +82,7 @@
 }
 
 .monitor-base:after {
+  opacity: 0.7;
   position: absolute;
   content: "";
   top: -0.5%;
@@ -98,7 +100,7 @@
 .screen-border {
   position: relative;
   height: 95%;
-  width: 75%;
+  width: 65%;
   background: linear-gradient(
     180deg,
     rgba(41, 38, 41, 1) 0%,
@@ -137,6 +139,7 @@
 .tag-border {
   background: #433e3e;
   padding: 4px;
+  margin-top: 15px;
 }
 .tag {
   background: #292828;
@@ -150,12 +153,41 @@
 
 .right-panel {
   display: flex;
-  height: 90%;
-  width: 25%;
+  height: 95%;
+  max-width: 25%;
   flex-direction: column;
   padding-left: 20px;
   align-items: center;
   justify-content: space-between;
+}
+.button-panel {
+  position: relative;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  background: #79767a;
+  border-radius: 50% / 3%;
+
+  padding-right: 20px;
+  padding-left: 30px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  z-index: 10;
+  box-shadow: rgb(49, 52, 55) 0px 6px 15px -5px;
+}
+
+.button-panel::after {
+  position: absolute;
+  content: "";
+  top: 3%;
+  bottom: 3%;
+  right: -2%;
+  left: -2%;
+  background: inherit;
+  border-radius: 2% / 50%;
+  z-index: -1;
 }
 
 @media (max-width: 860px) {
@@ -173,12 +205,20 @@
   .screen-border {
     flex-grow: 1;
     width: 95%;
-    height: 90%;
+    height: 60%;
   }
   .right-panel {
     flex-direction: row-reverse;
-    height: auto;
-    width: 90%;
+    justify-content: center;
+    gap: 40px;
+    height: 30%;
+    width: 100%;
+    max-width: 90%;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  .button-panel {
+    margin-bottom: 0px;
   }
 }
 
@@ -193,11 +233,11 @@
   }
   .right-panel {
     justify-content: center;
-    padding-bottom: 70px;
+    margin-bottom: 30px;
     padding-left: 0px;
   }
   .screen-border {
     min-width: 260px;
-    height: 70%;
+    height: 90%;
   }
 }

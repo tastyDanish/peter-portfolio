@@ -9,6 +9,10 @@
   --text-off: #ddd;
 }
 
+.power {
+  margin-top: -12px;
+}
+
 .rocker {
   display: inline-block;
   position: relative;
@@ -23,10 +27,16 @@
   border-bottom: 0.25rem solid var(--dark);
   border-radius: 3px;
 }
+.left {
+  box-shadow: rgb(49, 52, 55) -15px 15px 30px -10px;
+}
+
+.right {
+  box-shadow: rgb(49, 52, 55) 15px 15px 30px -10px;
+}
 
 .rocker-small {
   font-size: 1rem; /* Sizes the switch */
-  margin: 0 1rem;
 }
 
 .rocker::before {
@@ -58,13 +68,14 @@
   height: 3rem;
   width: 3rem;
   transition: 100ms;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .switch-left {
   height: 3rem;
   width: 3rem;
   left: 0.9rem;
-  bottom: 0.4rem;
+  bottom: 0.3rem;
   border-radius: 5px 0px 0px 5px;
   background-color: var(--switch);
   transform: rotate(15deg) skewX(15deg);

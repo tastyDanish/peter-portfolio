@@ -17,8 +17,10 @@
 .dashboard {
   width: 100%;
   display: flex;
-  height: 90%;
+  min-height: 600px;
+  height: 95%;
   justify-content: center;
+  overflow: hidden;
 }
 
 @media (max-width: 500px) {
