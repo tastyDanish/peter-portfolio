@@ -28,11 +28,11 @@
   border-radius: 3px;
 }
 .left {
-  box-shadow: rgb(49, 52, 55) -15px 15px 30px -10px;
+  box-shadow: rgb(49, 52, 55) -15px 25px 40px -10px;
 }
 
 .right {
-  box-shadow: rgb(49, 52, 55) 15px 15px 30px -10px;
+  box-shadow: rgb(49, 52, 55) 15px 25px 40px -10px;
 }
 
 .rocker-small {
