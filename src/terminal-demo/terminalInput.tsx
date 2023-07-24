@@ -35,19 +35,16 @@ const TerminalInput = (props: TerminalInputProps) => {
     }
   };
 
-  const handleChat = () => {
+  const handleChat = async () => {
     if (messageHistory.current.length > 8) messageHistory.current.shift();
     props.onEnter(`USER: ${inputValue}`, false, true);
     messageHistory.current.push({ role: "user", message: inputValue });
     try {
-      chat(messageHistory.current).then((response) => {
-        messageHistory.current.push({ role: "system", message: response });
-        setResponse(response);
-        console.log("curent message history: ", messageHistory.current);
-      });
+      const response = await chat(messageHistory.current);
+      messageHistory.current.push({ role: "system", message: response });
+      setResponse(response);
     } catch (error) {
-      setResponse("ERROR");
-      console.error(error);
+      setResponse("This confounding box lost your message. Can you try again?");
     }
   };
 

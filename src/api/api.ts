@@ -25,7 +25,6 @@ export const chat = async (messages: chatRecord[]) => {
     return response.data;
   } catch (error) {
     // Handle error
-    console.error(error);
     throw error;
   }
 };
@@ -36,7 +35,6 @@ export const getResume = async () => {
     return response.data as resumeRecord;
   } catch (error) {
     // Handle error
-    console.error(error);
     throw error;
   }
 };
