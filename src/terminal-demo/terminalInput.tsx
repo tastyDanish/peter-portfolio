@@ -44,7 +44,10 @@ const TerminalInput = (props: TerminalInputProps) => {
       messageHistory.current.push({ role: "system", message: response });
       setResponse(response);
     } catch (error) {
-      setResponse("This confounding box lost your message. Can you try again?");
+      const errorMessage =
+        "This confounding box lost your message. Can you try again?";
+      messageHistory.current.push({ role: "system", message: errorMessage });
+      setResponse(errorMessage);
     }
   };
 
