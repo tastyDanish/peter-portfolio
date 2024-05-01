@@ -30,6 +30,14 @@ resume = {
             "content": [],
             "collection": [
                 {
+                    "header": "Senior Software Developer at Strella Biotech from October 2023 to current",
+                    "content": [
+                        "Designed Python AWS Lambda functions with Docker containers registered in ECR, leveraging Pydantic to empower data scientists in algorithm development.",
+                        "Successfully converted multiple Javascript Lambdas to Typescript and consolidated common code into a referenced package enhancing maintainability of measurement ingestion.",
+                        "Engineered plop templates for Lambda boilerplate, orchestrated SAM for local testing, and implemented automated testing in the CI/CD pipeline for streamlined code deployment",
+                    ],
+                },
+                {
                     "header": "Senior Software Developer at Advocat AI from October 2021 to March 2023",
                     "content": [
                         "Demonstrated expertise in troubleshooting the Docker builds deployed with Kubernetes.",

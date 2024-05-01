@@ -6,6 +6,7 @@ micros:
     engine: python3.9
     primary: true
     run: uvicorn main:app
+    dev: ../../venv/bin/uvicorn main:app --port 8000
     public_routes:
       - "/chat"
       - "/resume"
