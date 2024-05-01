@@ -80,7 +80,7 @@ resume = {
             "content": [],
             "collection": [
                 {"header": "C#", "content": ["ASP.Net core and Blazor"]},
-                {"header": "Python", "content": ["Flash and FastApi"]},
+                {"header": "Python", "content": ["Flask and FastApi"]},
                 {"header": "Javascript", "content": ["React.js, Next.js, and Node.js"]},
             ],
         },
