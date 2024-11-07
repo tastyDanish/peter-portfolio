@@ -1,7 +1,7 @@
 import "./resume.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { getResume, resumeRecord, sectionRecord } from "../api/api";
+import { getResume, ResumeRecord, SectionRecord } from "../api/api";
 import closeIcon from "./close-paper.svg";
 import downloadIcon from "./download.svg";
 import JsPDF from "jspdf";
@@ -12,7 +12,7 @@ export interface ResumeProps {
 }
 
 const Resume = (props: ResumeProps) => {
-  const [resume, setResume] = useState<resumeRecord | undefined>();
+  const [resume, setResume] = useState<ResumeRecord | undefined>();
 
   useEffect(() => {
     getResume().then((s) => {
@@ -41,7 +41,7 @@ const Resume = (props: ResumeProps) => {
   };
 
   const renderSection = (
-    section: sectionRecord,
+    section: SectionRecord,
     subSection: boolean = false
   ) => {
     if (section.header === "DESCRIPTION") return <></>;

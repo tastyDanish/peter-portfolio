@@ -1,6 +1,6 @@
 import { GlitchHandle, useGlitch } from "react-powerglitch";
 import "./zylexPortrait.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, useAnimate } from "framer-motion";
 
 enum portraitStates {

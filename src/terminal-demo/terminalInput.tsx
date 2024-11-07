@@ -2,7 +2,7 @@ import React, { RefObject, useEffect, useRef } from "react";
 import { chat } from "../api/api";
 import "./terminalInput.css";
 import ZylexWriting from "./zylexWriting";
-import { ChatCompletionMessageParam } from "openai/resources";
+import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
 interface TerminalInputProps {
   ready: boolean;
@@ -12,7 +12,7 @@ interface TerminalInputProps {
 
 const TerminalInput = (props: TerminalInputProps) => {
   const [inputValue, setInputValue] = React.useState("");
-  const [chatEnabled, setChatEnabled] = React.useState(true);
+  const [chatEnabled, _] = React.useState(true);
   const [loading, setloading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const messageHistory = useRef<ChatCompletionMessageParam[]>([]);

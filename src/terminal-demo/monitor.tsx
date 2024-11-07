@@ -1,9 +1,8 @@
 import "./monitor.css";
 import Screen from "./screen";
 import Power from "./power";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import ZylexPortrait from "./zylexPortrait";
-import { getResume } from "../api/api";
 import Resume from "./resume";
 import CircleButton from "./circle-button";
 
