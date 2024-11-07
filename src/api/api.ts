@@ -1,7 +1,5 @@
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
-// const openai = new OpenAI();
-
 export interface SectionRecord {
   header: string;
   content: string[];
@@ -12,17 +10,32 @@ export interface ResumeRecord {
   sections: SectionRecord[];
 }
 
+const getNetlifyFunctionUrl = (functionName: string): string => {
+  const baseUrl = "http://localhost:8888";
+
+  return `${baseUrl}/.netlify/functions/${functionName}`;
+};
+
 export const chat = async (messages: ChatCompletionMessageParam[]) => {
   try {
-    console.log("doing messages: ", messages);
-    // const response = await openai.chat.completions.create({
-    //   model: "gpt-4o",
-    //   messages,
-    // });
-    // return response.choices[0].message;
-    return { content: "This confounding box doesn't work" };
+    const url = getNetlifyFunctionUrl("chat");
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(messages),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const content = await response.text();
+
+    return { content };
   } catch (error) {
-    // Handle error
+    console.log("here is the error: ", error);
     throw error;
   }
 };

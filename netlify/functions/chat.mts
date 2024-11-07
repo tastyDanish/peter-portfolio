@@ -1,13 +1,13 @@
-import type { Config, Context } from "@netlify/functions";
+import type { Context } from "@netlify/functions";
 import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources";
 
 export default async (req: Request, context: Context) => {
-  const requestKey = req.headers.get("X-API-Key");
-  const apiKey = Netlify.env.get("MY_API_KEY");
+  // const requestKey = req.headers.get("X-API-Key");
+  // const apiKey = Netlify.env.get("MY_API_KEY");
 
-  if (requestKey != apiKey)
-    return new Response("Sorry, no access for you.", { status: 401 });
+  // if (requestKey != apiKey)
+  //   return new Response("Sorry, no access for you.", { status: 401 });
 
   const openAiApiKey = Netlify.env.get("OPENAI_API_KEY");
   const client = new OpenAI({
@@ -23,9 +23,5 @@ export default async (req: Request, context: Context) => {
     model: "gpt-4o",
     messages,
   });
-  return response.choices[0].message;
-};
-
-export const config: Config = {
-  path: "/chat",
+  return new Response(response.choices[0].message.content);
 };
