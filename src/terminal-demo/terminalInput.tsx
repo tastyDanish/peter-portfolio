@@ -1,7 +1,8 @@
 import React, { RefObject, useEffect, useRef } from "react";
-import { chat, chatRecord } from "../api/api";
+import { chat } from "../api/api";
 import "./terminalInput.css";
 import ZylexWriting from "./zylexWriting";
+import { ChatCompletionMessageParam } from "openai/resources";
 
 interface TerminalInputProps {
   ready: boolean;
@@ -14,7 +15,7 @@ const TerminalInput = (props: TerminalInputProps) => {
   const [chatEnabled, setChatEnabled] = React.useState(true);
   const [loading, setloading] = React.useState(false);
   const [response, setResponse] = React.useState("");
-  const messageHistory = useRef<chatRecord[]>([]);
+  const messageHistory = useRef<ChatCompletionMessageParam[]>([]);
 
   useEffect(() => {
     if (response && chatEnabled)
@@ -38,15 +39,18 @@ const TerminalInput = (props: TerminalInputProps) => {
   const handleChat = async () => {
     if (messageHistory.current.length > 8) messageHistory.current.shift();
     props.onEnter(`USER: ${inputValue}`, false, true);
-    messageHistory.current.push({ role: "user", message: inputValue });
+    messageHistory.current.push({ role: "user", content: inputValue });
     try {
       const response = await chat(messageHistory.current);
-      messageHistory.current.push({ role: "system", message: response });
-      setResponse(response);
+      messageHistory.current.push({
+        role: "system",
+        content: response.content ?? "MESSAGE NOT FOUND",
+      });
+      setResponse(response.content ?? "MESSAGE NOT FOUND");
     } catch (error) {
       const errorMessage =
         "This confounding box lost your message. Can you try again?";
-      messageHistory.current.push({ role: "system", message: errorMessage });
+      messageHistory.current.push({ role: "system", content: errorMessage });
       setResponse(errorMessage);
     }
   };

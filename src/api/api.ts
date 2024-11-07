@@ -1,13 +1,7 @@
-import axios from "axios";
+import OpenAI from "openai";
+import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
-const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-});
-
-export interface chatRecord {
-  role: string;
-  message: string;
-}
+// const openai = new OpenAI();
 
 export interface sectionRecord {
   header: string;
@@ -19,10 +13,14 @@ export interface resumeRecord {
   sections: sectionRecord[];
 }
 
-export const chat = async (messages: chatRecord[]) => {
+export const chat = async (messages: ChatCompletionMessageParam[]) => {
   try {
-    const response = await api.post("/chat", { messages });
-    return response.data;
+    // const response = await openai.chat.completions.create({
+    //   model: "gpt-4o",
+    //   messages,
+    // });
+    // return response.choices[0].message;
+    return {}
   } catch (error) {
     // Handle error
     throw error;
@@ -31,8 +29,9 @@ export const chat = async (messages: chatRecord[]) => {
 
 export const getResume = async () => {
   try {
-    const response = await api.get("/resume");
-    return response.data as resumeRecord;
+    // const response = await api.get("/resume");
+    // return response.data as resumeRecord;
+    return {};
   } catch (error) {
     // Handle error
     throw error;
