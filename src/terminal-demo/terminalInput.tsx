@@ -12,7 +12,7 @@ interface TerminalInputProps {
 
 const TerminalInput = (props: TerminalInputProps) => {
   const [inputValue, setInputValue] = React.useState("");
-  const [chatEnabled, setChatEnable] = React.useState(true);
+  const [chatEnabled, _] = React.useState(true);
   const [loading, setloading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const messageHistory = useRef<ChatCompletionMessageParam[]>([]);

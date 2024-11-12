@@ -11,9 +11,9 @@ export interface ResumeRecord {
 }
 
 const getNetlifyFunctionUrl = (functionName: string): string => {
-  const baseUrl = "http://localhost:8888";
+  const domain = import.meta.env.VITE_API_URL || "http://localhost:8888";
 
-  return `${baseUrl}/.netlify/functions/${functionName}`;
+  return `${domain}/.netlify/functions/${functionName}`;
 };
 
 export const chat = async (messages: ChatCompletionMessageParam[]) => {
