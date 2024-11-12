@@ -11,7 +11,7 @@ export interface ResumeRecord {
 }
 
 const getNetlifyFunctionUrl = (functionName: string): string => {
-  const domain = import.meta.env.VITE_API_URL || "http://localhost:8888";
+  const domain = import.meta.env.VITE_DOMAIN || "http://localhost:8888";
 
   return `${domain}/.netlify/functions/${functionName}`;
 };
