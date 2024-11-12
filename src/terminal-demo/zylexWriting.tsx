@@ -16,7 +16,7 @@ const ZylexWriting = () => {
   };
 
   useEffect(() => {
-    const loadingTimeoutRef = setTimeout(animateLoading, 300);
+    const loadingTimeoutRef = setTimeout(animateLoading, 150);
 
     // Clean up the timeout when the component unmounts
     return () => clearTimeout(loadingTimeoutRef);

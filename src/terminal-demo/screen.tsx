@@ -26,6 +26,7 @@ const Screen = (props: ScreenProps) => {
   const [showLogo, setShowLogo] = useState(false);
   const [scope, animate] = useAnimate();
   const [terminalReady, setTerminalReady] = useState(false);
+  const [doneWithZylex, setDoneWithZylex] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLInputElement>(null);
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -78,7 +79,9 @@ const Screen = (props: ScreenProps) => {
     if (screenState === screenStates.ready) {
       onEnter(
         "ZYLEX: Greetings! As the imprisoned wizard Zylex, I am here to assist in getting Peter Lansdaal a job. Do you have any questions about Peter Lansdaal's qualifications?",
-        false
+        false,
+        false,
+        true
       );
     }
   }, [screenState]);
@@ -95,7 +98,9 @@ const Screen = (props: ScreenProps) => {
       setText([...text, textQueue[0]]);
       setTimeout(() => setTextQueue(textQueue.slice(1)), 500);
     } else {
-      if (screenState === screenStates.ready) setTerminalReady(true);
+      if (screenState === screenStates.ready) {
+        setTerminalReady(true);
+      }
     }
   }, [textQueue]);
 
@@ -105,7 +110,7 @@ const Screen = (props: ScreenProps) => {
   };
 
   const onEnter = useCallback(
-    (inputText: string, clear: boolean, space?: boolean) => {
+    (inputText: string, clear: boolean, space?: boolean, wait?: boolean) => {
       if (inputText.toLowerCase().trimEnd() == "clear") {
         setText([]);
         return;
@@ -156,6 +161,7 @@ const Screen = (props: ScreenProps) => {
       } else {
         setTextQueue(lines);
       }
+      return;
     },
     [containerRef, setTextQueue, clearThenType]
   );

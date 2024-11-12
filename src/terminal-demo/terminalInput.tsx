@@ -6,21 +6,27 @@ import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
 interface TerminalInputProps {
   ready: boolean;
-  onEnter(text: string, clear: boolean, space?: boolean): void;
+  onEnter(text: string, clear: boolean, space?: boolean, wait?: boolean): void;
   childRef: RefObject<HTMLInputElement>;
 }
 
 const TerminalInput = (props: TerminalInputProps) => {
   const [inputValue, setInputValue] = React.useState("");
-  const [chatEnabled, _] = React.useState(true);
+  const [chatEnabled, setChatEnabled] = React.useState(true);
   const [loading, setloading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const messageHistory = useRef<ChatCompletionMessageParam[]>([]);
 
   useEffect(() => {
-    if (response && chatEnabled)
-      props.onEnter(`ZYLEX: ${response}`, false, true);
-    setloading(false);
+    const zylexType = async () => {
+      if (response && chatEnabled) {
+        props.onEnter(`ZYLEX: ${response}`, false, true, true);
+      }
+      setTimeout(() => {
+        setloading(false);
+      }, 600);
+    };
+    zylexType();
   }, [response]);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,12 +47,12 @@ const TerminalInput = (props: TerminalInputProps) => {
     props.onEnter(`USER: ${inputValue}`, false, true);
     messageHistory.current.push({ role: "user", content: inputValue });
     try {
-      const response = await chat(messageHistory.current);
+      const zylexRespponse = await chat(messageHistory.current);
       messageHistory.current.push({
         role: "system",
-        content: response.content ?? "MESSAGE NOT FOUND",
+        content: zylexRespponse.content ?? "MESSAGE NOT FOUND",
       });
-      setResponse(response.content ?? "MESSAGE NOT FOUND");
+      setResponse(zylexRespponse.content ?? "MESSAGE NOT FOUND");
     } catch (error) {
       const errorMessage =
         "This confounding box lost your message. Can you try again?";
