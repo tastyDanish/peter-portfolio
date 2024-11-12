@@ -1,10 +1,11 @@
 import "./monitor.css";
-import Screen from "./screen";
+import Screen from "./screen/screen";
 import Power from "./power";
 import { useCallback, useState } from "react";
-import ZylexPortrait from "./zylexPortrait";
+import ZylexPortrait from "./zylex-portrait/zylexPortrait";
 import Resume from "./resume";
 import CircleButton from "./circle-button";
+import { TextProvider } from "./screen/text-provider";
 
 const Monitor = () => {
   const [power, setPower] = useState(false);
@@ -29,7 +30,9 @@ const Monitor = () => {
           <div className="monitor-details">
             <div className="monitor-base">
               <div className="screen-border">
-                <Screen isOn={power} />
+                <TextProvider>
+                  <Screen isOn={power} />
+                </TextProvider>
               </div>
               <div className="right-panel">
                 <div className="button-panel">

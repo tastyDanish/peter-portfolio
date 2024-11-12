@@ -1,13 +1,13 @@
-import "./zylex-writing.css";
+import "./zylex-thinking.css";
 import { useState, useEffect, useRef } from "react";
 
-const ZylexWriting = () => {
-  const [loadingText, setLoadingText] = useState("ZYLEX IS WRITING");
+const ZylexThinking = () => {
+  const [loadingText, setLoadingText] = useState("ZYLEX IS THINKING");
   const numberRef = useRef(0);
 
   const animateLoading = () => {
     if (numberRef.current === 10) {
-      setLoadingText("ZYLEX IS WRITING");
+      setLoadingText("ZYLEX IS THINKING");
       numberRef.current = 0;
     } else {
       setLoadingText((prevText) => prevText + ".");
@@ -25,4 +25,4 @@ const ZylexWriting = () => {
   return <div className="zylex-typing">{loadingText}</div>;
 };
 
-export default ZylexWriting;
+export default ZylexThinking;
