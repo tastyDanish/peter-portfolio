@@ -13,7 +13,7 @@ const TerminalInput = (props: TerminalInputProps) => {
   const { writeText, inputEnabled } = useText();
   const [loading, setLoading] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
-  const [chatEnabled, setChatEnabled] = React.useState(true);
+  const [chatEnabled, _setChatEnabled] = React.useState(true);
   const [response, setResponse] = React.useState("");
   const messageHistory = useRef<ChatCompletionMessageParam[]>([]);
 
