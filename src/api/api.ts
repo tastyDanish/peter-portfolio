@@ -1,9 +1,9 @@
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { initialSystemMessage, parseResume, resume, system } from "./strings";
 
 export interface SectionRecord {
   header: string;
   content: string[];
-  collection: SectionRecord[];
 }
 
 export interface ResumeRecord {
@@ -16,7 +16,13 @@ const getNetlifyFunctionUrl = (functionName: string): string => {
   return `${domain}/.netlify/functions/${functionName}`;
 };
 
-export const chat = async (messages: ChatCompletionMessageParam[]) => {
+export const chat = async (userMessages: ChatCompletionMessageParam[]) => {
+  const messages: ChatCompletionMessageParam[] = [
+    { role: "system", content: initialSystemMessage },
+    ...userMessages,
+    { role: "system", content: system + parseResume() },
+  ];
+
   try {
     const url = getNetlifyFunctionUrl("chat");
     const response = await fetch(url, {
@@ -41,16 +47,5 @@ export const chat = async (messages: ChatCompletionMessageParam[]) => {
 };
 
 export const getResume = async () => {
-  try {
-    // const response = await api.get("/resume");
-    // return response.data as resumeRecord;
-
-    const testResponse: ResumeRecord = {
-      sections: [],
-    };
-    return testResponse;
-  } catch (error) {
-    // Handle error
-    throw error;
-  }
+  return resume;
 };

@@ -51,11 +51,6 @@ const Resume = (props: ResumeProps) => {
         <ul key={section.header + "key"}>
           {renderContent(section.content, subSection)}
         </ul>
-        {section.collection &&
-          section.collection.length > 0 &&
-          section.collection.map((subSection) =>
-            renderSection(subSection, true)
-          )}
       </div>
     );
   };
