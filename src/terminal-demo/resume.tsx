@@ -47,15 +47,15 @@ const Resume = () => {
     );
   };
 
-  const generatePDF = () => {
-    const doc = new JsPDF("portrait", "pt", "a4");
-    const resumeRef = document.querySelector("#paper");
-    if (resumeRef) {
-      doc.html(resumeRef.outerHTML).then(() => {
-        doc.save("Peter Lansdaal Resume.pdf");
-      });
-    }
-  };
+  // const generatePDF = () => {
+  //   const doc = new JsPDF("portrait", "pt", "a4");
+  //   const resumeRef = document.querySelector("#paper");
+  //   if (resumeRef) {
+  //     doc.html(resumeRef.outerHTML).then(() => {
+  //       doc.save("Peter Lansdaal Resume.pdf");
+  //     });
+  //   }
+  // };
 
   return (
     <>
