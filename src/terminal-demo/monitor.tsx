@@ -6,25 +6,38 @@ import ZylexPortrait from "./zylex-portrait/zylexPortrait";
 import Resume from "./resume";
 import CircleButton from "./circle-button";
 import { TextProvider } from "./screen/text-provider";
+import Links from "./links";
+import Paper from "./paper";
 
 const Monitor = () => {
   const [power, setPower] = useState(false);
-  const [showPaper, setShowPaper] = useState(false);
+  const [showResume, setShowResume] = useState(false);
+  const [showLinks, setShowLinks] = useState(false);
 
   const handlePower = (power: boolean) => {
     setPower(power);
   };
 
-  const flipPaper = useCallback(() => {
-    setShowPaper(!showPaper);
-  }, [setShowPaper, showPaper]);
+  const flipResume = useCallback(() => {
+    setShowResume(!showResume);
+  }, [setShowResume, showResume]);
+
+  const flipLinks = useCallback(() => {
+    setShowLinks(!showLinks);
+  }, [setShowLinks, showLinks]);
 
   return (
     <>
-      <Resume
-        showResume={showPaper}
-        onOverlayClick={flipPaper}
-      />
+      <Paper
+        showContent={showResume}
+        onOverlayClick={flipResume}>
+        <Resume />
+      </Paper>
+      <Paper
+        showContent={showLinks}
+        onOverlayClick={flipLinks}>
+        <Links />
+      </Paper>
       <div className="monitor">
         <div className="border-box">
           <div className="monitor-details">
@@ -37,8 +50,12 @@ const Monitor = () => {
               <div className="right-panel">
                 <div className="button-panel">
                   <CircleButton
-                    label="RESUME"
-                    handleOnClick={flipPaper}
+                    label="LINKS"
+                    handleOnClick={flipLinks}
+                  />
+                  <CircleButton
+                    label="RÉSUMÉ"
+                    handleOnClick={flipResume}
                   />
                   <Power
                     isOn={power}

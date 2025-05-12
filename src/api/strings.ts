@@ -26,6 +26,7 @@ Here are the principals of the best Zylex impression.
 - Zylex will respond to any question on Peter is a question about Peter Lansdaal.
 - Zylex does not talk about being an AI language model.
 - Zylex is Peter Lansdaal's portfolio.
+- Zylex will talke about the "Beyond the Code" section if asked about Peter's life outside of work
 
 Listed below are the facts of Peter Lansdaal. Use the following information to answer questions about Peter:
 `;
@@ -42,33 +43,36 @@ export const resume: ResumeRecord = {
     },
     {
       header:
-        "Senior Software Developer - Strella Biotech (Oct 2023 - Feb 2025)",
+        "Senior Full Stack Software Developer - Strella Biotech (Oct 2023 - Feb 2025)",
       content: [
-        "Architected a high-volume Quality Control inventory matching system using TypeScript, AWS, Docker, Lambda, SNS, S3, and SQS, processing over 100,000 records daily. This system significantly reduced apple repacks, saving millions annually through reduced waste.",
-        "Refactored a ripening task system with Next.js and a custom rules engine, replacing a buggy, monolithic backend with modular, testable services. Enhanced consistency, testability, and debugging through improved logging, resulting in a precise, data-driven workflow.",
-        "Established fast, reliable cloud infrastructure with Terraform, AWS SAM, and a CI/CD pipeline. This approach streamlined automated testing and made deployments consistent, repeatable, and efficient.",
+        "Architected a high volume inventory matching system using Typescript, Docker, Lambda, SNS, S3, SQS, and PostgresDB, calculating sell-by-dates for over 100,000 records daily. This system significantly reduced apple repacks, saving millions annually through reduced waste.",
+        "Designed and built a modular ripening system using Next.js, React, and a custom Rules Engine, delivering consistent task execution, improved testability, and robust logging for traceability.",
+        "Supported a real-time monitoring system by developing a consolidated React front-end, unifying several data views into one platform for improved usability.",
+        "Established fast, reliable cloud infrastructure with Terraform, a CI/CD pipeline, Datadog integration, and a shared typescript package to centralize core logic.",
       ],
     },
     {
       header: "Senior Software Developer - Advocat AI (Oct 2021 - Mar 2023)",
       content: [
-        "Re-engineered backend with a C# ASP.NET gRPC API and Azure Cosmos DB, significantly improving performance and enabling functional prototypes despite initial limitations.",
-        "Led a Go micro-service deployment on Kubernetes, collaborating with product and business teams to align technical solutions with strategic goals.",
+        "Developed a backend using C# ASP.NET gRPC API with MongoDB to automate contract lifecycle management and support LLM analysis through structured data access.",
+        "Led development of Dockerized Go microservices on Kubernetes to support contract generation, including clause retrieval and entity association logic.",
       ],
     },
     {
       header:
         "Software Developer - Amplify Consulting Partners (Aug 2019 - Oct 2021)",
       content: [
-        "Architected a Python Lambda-based data pipeline to load data into a Redshift cluster, enabling faster access to critical data and improving dashboard performance for decision-makers.",
-        "Developed a C# ASP.NET REST API using an Azure Microsoft SQL Server for a new student information system, optimizing administrative processes and improving data management.",
-        "Contributed to a React front-end project, enhancing user experience and responsiveness with Redux for state management.",
+        "Architected a AWS Lambda Python data pipeline to load data into a Redshift cluster, enabling faster access to critical data and enhancing dashboard performance for decision-makers.",
+        "Developed a C# ASP.NET REST API with Microsoft SQL Server to manage statewide public school financial data and streamline student information workflows.",
+        "Mentored new data team on cloud development, Git management, and CI/CD pipelines.",
+        "Collaborated on a React typescript front-end project, enhancing user experience and responsiveness with Redux for state management.",
       ],
     },
     {
       header: "Data Engineer - JND Legal Administration (Mar 2018 - Mar 2019)",
       content: [
-        "Streamlined ETL processes utilizing Python and Machine Learning, improving data analyst productivity.",
+        "Used Python and ML to automate ETL address aggregation, saving 4+ hours per week by replacing a manual sorting process.",
+        "Built a dynamic PDF generator in Python to automate securities notifications, enabling a previously unavailable communication channel for claimants.",
       ],
     },
     {
@@ -84,6 +88,12 @@ export const resume: ResumeRecord = {
       content: [
         "University of Washington 2014 - B.A. Mathematics with a Minor in Applied Mathematics",
         "UW Continuing Education 2018 - Data Science Certificate",
+      ],
+    },
+    {
+      header: "Beyond the Code",
+      content: [
+        "Outside of software, Peter is a passionate creator. He paints landscapes en plein air and brings fantasy worlds to life through detailed miniature painting. He's trained in improv and has spent years as a dedicated dungeon master. Skills that sharpen storytelling, collaboration, and adaptability. Whether its behind the brush or game screen, he is focused on crafting memorable, meaningful experiences",
       ],
     },
   ],

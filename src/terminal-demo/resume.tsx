@@ -1,17 +1,9 @@
-import "./resume.css";
-import { AnimatePresence, motion } from "framer-motion";
+import "./paper.css";
 import { useEffect, useState } from "react";
 import { getResume, ResumeRecord, SectionRecord } from "../api/api";
-import closeIcon from "./close-paper.svg";
-import downloadIcon from "./download.svg";
 import JsPDF from "jspdf";
 
-export interface ResumeProps {
-  showResume: boolean;
-  onOverlayClick(): void;
-}
-
-const Resume = (props: ResumeProps) => {
+const Resume = () => {
   const [resume, setResume] = useState<ResumeRecord | undefined>();
 
   useEffect(() => {
@@ -66,63 +58,13 @@ const Resume = (props: ResumeProps) => {
   };
 
   return (
-    <AnimatePresence>
-      {props.showResume && (
-        <motion.div
-          onClick={(e) => {
-            e.stopPropagation();
-            props.onOverlayClick();
-          }}
-          initial={{ y: "100%" }}
-          animate={{ y: "-5%", overflowY: "auto" }}
-          exit={{ y: "100%", transition: { ease: "easeIn", duration: 0.4 } }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="scroll-container">
-          <div
-            className="paper-container"
-            id="paper">
-            <div className="dotmatrix-holes" />
-            <div
-              className="paper"
-              onClick={(e) => e.stopPropagation()}>
-              <button
-                className="download"
-                onClick={generatePDF}
-                style={{
-                  display: "none",
-                  border: "none",
-                  background: "transparent",
-                  cursor: "pointer",
-                }}>
-                <img
-                  src={downloadIcon}
-                  alt="Download"
-                />
-              </button>
-              <button
-                className="close"
-                onClick={props.onOverlayClick}
-                style={{
-                  border: "none",
-                  background: "transparent",
-                  cursor: "pointer",
-                }}>
-                <img
-                  src={closeIcon}
-                  alt="Close"
-                />
-              </button>
-              <h1>Peter Lansdaal</h1>
-              {resume &&
-                resume.sections.map((section) => {
-                  return renderSection(section);
-                })}
-            </div>
-            <div className="dotmatrix-holes" />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <>
+      <h1>Peter Lansdaal</h1>
+      {resume &&
+        resume.sections.map((section) => {
+          return renderSection(section);
+        })}
+    </>
   );
 };
 

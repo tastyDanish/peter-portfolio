@@ -4,7 +4,7 @@
   --switch: rgb(109, 101, 99);
   --switch-accent: rgb(79, 69, 67);
   --switch-on: hsl(107, 40%, 50%);
-  --switch-off: hsl(0, 40%, 51%);
+  --switch-off: hsl(107, 40%, 50%);
   --text-on: #fff;
   --text-off: #ddd;
 }
