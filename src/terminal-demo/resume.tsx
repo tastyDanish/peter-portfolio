@@ -1,7 +1,7 @@
 import "./paper.css";
 import { useEffect, useState } from "react";
 import { getResume, ResumeRecord, SectionRecord } from "../api/api";
-import JsPDF from "jspdf";
+// import JsPDF from "jspdf";
 
 const Resume = () => {
   const [resume, setResume] = useState<ResumeRecord | undefined>();
