@@ -28,9 +28,10 @@ const Links = () => {
         Fortune's Palette is a daily divination experience that blends tarot and
         color. Draw a card, receive your reading, and discover a unique color
         palette—randomly generated as mono, duo, tri, or quadratic—to inspire
-        your mood or creativity. Built as a fast, modern Vite + React app,
-        styled with Tailwind CSS, and brought to life with smooth Framer Motion
-        animations.
+        your mood or creativity. Palette generation is powered by chroma.js,
+        ensuring harmonious and dynamic color combinations. Built as a fast,
+        modern Vite + React app, styled with Tailwind CSS, and brought to life
+        with smooth Framer Motion animations.
       </p>
 
       <h3>Custom Lootbox</h3>
