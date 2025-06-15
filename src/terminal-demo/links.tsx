@@ -17,6 +17,21 @@ const Links = () => {
 
       <br />
       <h2>Here are some lil projects I've built in my spare time</h2>
+      <h3>Custom Lootbox</h3>
+      <a
+        href="https://www.fortunespalette.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+        https://www.fortunespalette.com/
+      </a>
+      <p>
+        Fortune's Palette is a daily divination experience that blends tarot and
+        color. Draw a card, receive your reading, and discover a unique color
+        palette—randomly generated as mono, duo, tri, or quadratic—to inspire
+        your mood or creativity. Built as a fast, modern Vite + React app,
+        styled with Tailwind CSS, and brought to life with smooth Framer Motion
+        animations.
+      </p>
 
       <h3>Custom Lootbox</h3>
       <a
