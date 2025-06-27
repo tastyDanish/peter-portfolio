@@ -17,7 +17,7 @@ const Links = () => {
 
       <br />
       <h2>Here are some lil projects I've built in my spare time</h2>
-      <h3>Custom Lootbox</h3>
+      <h3>Fortune's Palette</h3>
       <a
         href="https://www.fortunespalette.com/"
         target="_blank"
