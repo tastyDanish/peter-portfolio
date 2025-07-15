@@ -17,6 +17,24 @@ const Links = () => {
 
       <br />
       <h2>Here are some lil projects I've built in my spare time</h2>
+      <h3>Hype Train</h3>
+      <a
+        href="https://www.hypetrain.news/"
+        target="_blank"
+        rel="noopener noreferrer">
+        https://www.hypetrain.news/
+      </a>
+      <p>
+        Hypetrain.news is a fantasy football news aggregator designed to help
+        users stay ahead of the hype. Built with a React + Vite frontend and
+        powered by Supabase, it delivers up-to-date player trends sourced from
+        the Sleeper API. A Python script running on an Oracle VM fetches
+        relevant news from Newsdata.io, then uses AI to summarize the articles;
+        saving users time and helping them decide whether a player's hype is
+        real. With Hypetrain.news, you can hop on the train before it leaves the
+        station.
+      </p>
+
       <h3>Fortune's Palette</h3>
       <a
         href="https://www.fortunespalette.com/"

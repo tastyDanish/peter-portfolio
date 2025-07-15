@@ -50,7 +50,7 @@ const Monitor = () => {
               <div className="right-panel">
                 <div className="button-panel">
                   <CircleButton
-                    label="LINKS"
+                    label="PROJECTS"
                     handleOnClick={flipLinks}
                   />
                   <CircleButton
